@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guilherme Oconker — A Verdade na Mente Ainda é Ilusão</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --gold: #d4a853;
+  --gold-light: #e8c97a;
+  --gold-dim: #b8923e;
+  --gold-glow: rgba(212, 168, 83, 0.3);
+  --gold-subtle: rgba(212, 168, 83, 0.08);
+  --cyan: #5ec4c6;
+  --cyan-dim: #4aa8aa;
+  --cyan-glow: rgba(94, 196, 198, 0.25);
+  --cyan-subtle: rgba(94, 196, 198, 0.06);
+  --dark: #08080a;
+  --dark-card: #0d0d10;
+  --dark-surface: #111115;
+  --dark-border: #1c1c22;
+  --text: #e4e2dd;
+  --text-dim: #8a877e;
+  --text-muted: #555350;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+#smoke-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8, 8, 10, 0.7);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--dark-border);
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  padding: 0.8rem 3rem;
+  background: rgba(8, 8, 10, 0.92);
+}
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-decoration: none;
+  text-shadow: 0 0 20px var(--gold-glow);
+}
+.nav-logo span { color: var(--text); font-weight: 400; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s, text-shadow 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px var(--gold-glow);
+}
+.nav-links a:hover { color: var(--gold); text-shadow: 0 0 12px var(--gold-glow); }
+.nav-links a:hover::after { width: 100%; }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 101;
+}
+.nav-hamburger span { width: 24px; height: 2px; background: var(--text); transition: all 0.3s; }
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 25%, rgba(212, 168, 83, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 25% 75%, rgba(94, 196, 198, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 65%, rgba(212, 168, 83, 0.03) 0%, transparent 50%);
+  z-index: -1;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,83,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94,196,198,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: -1;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+.hero-content {
+  max-width: 800px;
+  padding: 2rem;
+  animation: fadeInUp 1.2s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-tag {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.hero-tag::before, .hero-tag::after {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--cyan);
+  opacity: 0.5;
+}
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.08em;
+}
+.hero-title .o-slash {
+  color: var(--gold-light);
+  text-shadow: 0 0 30px var(--gold-glow), 0 0 60px rgba(212,168,83,0.15);
+}
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+  letter-spacing: 0.04em;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2.5rem;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+.hero-cta:hover {
+  color: var(--dark);
+  box-shadow: 0 0 30px var(--gold-glow);
+}
+.hero-cta:hover::before { transform: translateX(0); }
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: bounce 2.5s ease-in-out infinite;
+}
+.hero-scroll-indicator span {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+section {
+  position: relative;
+  z-index: 1;
+  padding: 7rem 2rem;
+}
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.section-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+  margin: 1.5rem auto 0;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+.manifesto {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark-surface) 50%, var(--dark) 100%);
+}
+.manifesto-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.manifesto-text p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  line-height: 1.9;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+}
+.manifesto-text p strong { color: var(--gold-light); font-weight: 600; }
+.manifesto-visual { display: flex; justify-content: center; align-items: center; }
+.eye-container {
+  width: 280px; height: 280px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.eye-ring {
+  position: absolute;
+  border-radius: 50%;
+  animation: rotateRing 20s linear infinite;
+}
+.eye-ring:nth-child(1) { width: 280px; height: 280px; border: 1px solid rgba(212, 168, 83, 0.15); }
+.eye-ring:nth-child(2) { width: 220px; height: 220px; animation-direction: reverse; animation-duration: 15s; border: 1px solid rgba(94, 196, 198, 0.12); }
+.eye-ring:nth-child(3) { width: 160px; height: 160px; animation-duration: 25s; border: 1px solid rgba(212, 168, 83, 0.2); }
+.eye-ring:nth-child(1)::before {
+  content: ''; position: absolute; top: -3px; left: 50%;
+  width: 6px; height: 6px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 10px var(--gold-glow);
+}
+.eye-ring:nth-child(2)::before {
+  content: ''; position: absolute; top: -3px; left: 50%;
+  width: 5px; height: 5px; background: var(--cyan); border-radius: 50%; box-shadow: 0 0 10px var(--cyan-glow);
+}
+.eye-ring:nth-child(3)::before {
+  content: ''; position: absolute; top: -3px; left: 50%;
+  width: 6px; height: 6px; background: var(--gold-light); border-radius: 50%; box-shadow: 0 0 10px var(--gold-glow);
+}
+@keyframes rotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.eye-center {
+  width: 60px; height: 60px;
+  background: radial-gradient(circle, var(--gold) 0%, rgba(212,168,83,0.2) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+.pillars { background: var(--dark); }
+.pillars-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.pillar-card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  cursor: default;
+}
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--cyan), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.pillar-card:hover::before { opacity: 1; }
+.pillar-card:hover {
+  border-color: rgba(212,168,83,0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.pillar-icon {
+  width: 44px; height: 44px;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pillar-number {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, rgba(212,168,83,0.1), rgba(94,196,198,0.05));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.pillar-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+.pillar-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.7; }
+.quote-section {
+  background: var(--dark-surface);
+  text-align: center;
+  padding: 6rem 2rem;
+  position: relative;
+}
+.quote-section::before, .quote-section::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+.quote-section::before { top: 0; }
+.quote-section::after { bottom: 0; }
+.quote-mark {
+  font-family: 'Cinzel', serif;
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: -1rem;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-style: italic;
+  font-weight: 400;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: var(--text);
+}
+.quote-text .gold { color: var(--gold-light); text-shadow: 0 0 15px var(--gold-glow); }
+.quote-author {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.videos { background: var(--dark); }
+.videos-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.video-card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.video-card:hover {
+  border-color: rgba(212,168,83,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+.video-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--dark-surface), #0a0a12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.video-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212,168,83,0.04), rgba(94,196,198,0.03));
+}
+.play-icon {
+  width: 50px; height: 50px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.video-card:hover .play-icon {
+  background: var(--gold);
+  box-shadow: 0 0 20px var(--gold-glow);
+}
+.play-icon svg { fill: var(--gold); transition: fill 0.3s; }
+.video-card:hover .play-icon svg { fill: var(--dark); }
+.video-info { padding: 1.2rem; }
+.video-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.video-meta { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em; }
+.video-meta .tag-cyan { color: var(--cyan-dim); }
+.newsletter {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark-surface) 100%);
+  text-align: center;
+}
+.newsletter-box { max-width: 600px; margin: 0 auto; }
+.newsletter-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+.newsletter-form { display: flex; gap: 0; max-width: 480px; margin: 0 auto; }
+.newsletter-form input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-right: none;
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.newsletter-form input::placeholder { color: var(--text-muted); }
+.newsletter-form input:focus { border-color: var(--gold-dim); }
+.newsletter-form button {
+  padding: 1rem 2rem;
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: var(--dark);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.newsletter-form button:hover {
+  background: transparent;
+  color: var(--gold);
+  box-shadow: 0 0 20px var(--gold-glow);
+}
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--dark-border);
+  background: var(--dark);
+}
+.footer-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-shadow: 0 0 20px var(--gold-glow);
+  margin-bottom: 1.5rem;
+}
+.footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+.footer-socials a {
+  width: 42px; height: 42px;
+  border: 1px solid var(--dark-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.footer-socials a:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+.footer-copy { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.1em; }
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(8,8,10,0.97);
+    justify-content: center; align-items: center; gap: 2rem; z-index: 100;
+  }
+  .nav-links.open a { font-size: 1.1rem; }
+  .manifesto-grid { grid-template-columns: 1fr; }
+  .manifesto-visual { order: -1; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .newsletter-form { flex-direction: column; }
+  .newsletter-form input { border-right: 1px solid var(--dark-border); }
+}
+@media (max-width: 600px) {
+  .hero-content { padding: 1rem; }
+  section { padding: 4rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="smoke-canvas"></canvas>
+<nav id="navbar">
+  <a href="#" class="nav-logo">Ø<span>CONKER</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#manifesto" onclick="closeMenu()">Manifesto</a></li>
+    <li><a href="#pilares" onclick="closeMenu()">Pilares</a></li>
+    <li><a href="#videos" onclick="closeMenu()">Conteúdo</a></li>
+    <li><a href="#newsletter" onclick="closeMenu()">Comunidade</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Consciência &bull; Identidade &bull; Transformação</div>
+    <h1 class="hero-title">
+      GUILHERME<br>
+      <span class="o-slash">Ø</span>CONKER
+    </h1>
+    <p class="hero-subtitle">A verdade na mente ainda é ilusão</p>
+    <a href="https://www.youtube.com/@guilhermeoconker" target="_blank" class="hero-cta">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Assistir no YouTube
+    </a>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Explorar</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+<section class="manifesto" id="manifesto">
+  <div class="section-header reveal">
+    <div class="section-label">Manifesto</div>
+    <h2 class="section-title">Desperte para o que Já É</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="manifesto-grid">
+    <div class="manifesto-text reveal">
+      <p>Vivemos numa era onde a <strong>inteligência artificial</strong> questiona o que significa ser humano. Onde a identidade profissional se dissolve e renasce a cada ciclo tecnológico.</p>
+      <p>Este canal é um espaço para quem sente que algo maior se move por trás das mudanças — para quem busca <strong>consciência</strong> num mundo que insiste em automatizar tudo, menos o despertar.</p>
+      <p>Aqui exploramos a fronteira entre a sabedoria ancestral e o futuro que já chegou. Não para resistir à mudança, mas para <strong>navegá-la como mestres</strong>.</p>
+    </div>
+    <div class="manifesto-visual reveal">
+      <div class="eye-container">
+        <div class="eye-ring"></div>
+        <div class="eye-ring"></div>
+        <div class="eye-ring"></div>
+        <div class="eye-center"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pillars" id="pilares">
+  <div class="section-header reveal">
+    <div class="section-label">Pilares</div>
+    <h2 class="section-title">Três Caminhos, Uma Jornada</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar-card reveal">
+      <div class="pillar-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="16" stroke="#d4a853" stroke-width="1" opacity="0.3"/>
+          <circle cx="18" cy="18" r="8" stroke="#e8c97a" stroke-width="1" opacity="0.5"/>
+          <circle cx="18" cy="18" r="3" fill="#d4a853" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="pillar-number">01</div>
+      <h3 class="pillar-title">Consciência & Realidade</h3>
+      <p class="pillar-desc">A realidade pessoal é uma construção. Exploramos como crenças, percepções e estados de consciência moldam o mundo que cada um habita — e como reescrevê-lo.</p>
+    </div>
+    <div class="pillar-card reveal">
+      <div class="pillar-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <path d="M18 4 L32 18 L18 32 L4 18 Z" stroke="#5ec4c6" stroke-width="1" opacity="0.4"/>
+          <path d="M18 10 L26 18 L18 26 L10 18 Z" stroke="#5ec4c6" stroke-width="1" opacity="0.6"/>
+          <circle cx="18" cy="18" r="3" fill="#5ec4c6" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="pillar-number">02</div>
+      <h3 class="pillar-title">Identidade na Era da IA</h3>
+      <p class="pillar-desc">Quando máquinas fazem o que antes nos definia, quem somos nós? Investigamos a sombra da obsolescência e o renascimento da identidade profissional.</p>
+    </div>
+    <div class="pillar-card reveal">
+      <div class="pillar-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <polygon points="18,3 33,28 3,28" stroke="#d4a853" stroke-width="1" opacity="0.3"/>
+          <polygon points="18,10 27,26 9,26" stroke="#e8c97a" stroke-width="1" opacity="0.5"/>
+          <circle cx="18" cy="21" r="3" fill="#d4a853" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="pillar-number">03</div>
+      <h3 class="pillar-title">Sabedoria Ancestral Aplicada</h3>
+      <p class="pillar-desc">De tradições taoístas à psicologia junguiana, reconectamos o conhecimento milenar com os desafios de navegar um mundo em aceleração exponencial.</p>
+    </div>
+  </div>
+</section>
+<section class="quote-section">
+  <div class="reveal">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">Você não encontra a verdade — você <span class="gold">remove</span> tudo aquilo que a estava escondendo.</p>
+    <p class="quote-author">— Guilherme Oconker</p>
+  </div>
+</section>
+<section class="videos" id="videos">
+  <div class="section-header reveal">
+    <div class="section-label">Conteúdo</div>
+    <h2 class="section-title">Mergulhe Mais Fundo</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="videos-grid">
+    <div class="video-card reveal">
+      <div class="video-thumb">
+        <div class="play-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24"><polygon points="8 5 20 12 8 19"/></svg>
+        </div>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">O Medo da IA Está Te Paralisando?</h3>
+        <p class="video-meta"><span class="tag-cyan">Neurociência</span> &bull; Identidade &bull; Novo</p>
+      </div>
+    </div>
+    <div class="video-card reveal">
+      <div class="video-thumb">
+        <div class="play-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24"><polygon points="8 5 20 12 8 19"/></svg>
+        </div>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">A Natureza da Realidade Pessoal</h3>
+        <p class="video-meta">Seth &bull; <span class="tag-cyan">Metafísica</span> &bull; Filosofia</p>
+      </div>
+    </div>
+    <div class="video-card reveal">
+      <div class="video-thumb">
+        <div class="play-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24"><polygon points="8 5 20 12 8 19"/></svg>
+        </div>
+      </div>
+      <div class="video-info">
+        <h3 class="video-title">A Sombra Junguiana e o Futuro</h3>
+        <p class="video-meta">Jung &bull; Sombra &bull; <span class="tag-cyan">Psicologia</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="newsletter" id="newsletter">
+  <div class="section-header reveal">
+    <div class="section-label">Comunidade</div>
+    <h2 class="section-title">Entre no Círculo</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="newsletter-box reveal">
+    <p class="newsletter-desc">Reflexões semanais sobre consciência, identidade e as fronteiras entre o humano e o artificial. Direto na sua caixa de entrada.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Seu melhor e-mail">
+      <button type="button">Quero Participar</button>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-brand">ØCONKER</div>
+  <div class="footer-socials">
+    <a href="https://www.youtube.com/@guilhermeoconker" target="_blank" aria-label="YouTube">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+    </a>
+    <a href="#" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="#" aria-label="Twitter">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Guilherme Oconker — Todos os direitos reservados</p>
+</footer>
+<script>
+const canvas = document.getElementById('smoke-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let w, h;
+function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * w;
+    this.y = h + Math.random() * 100;
+    this.size = Math.random() * 120 + 40;
+    this.speedY = -(Math.random() * 0.4 + 0.1);
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.07 + 0.02;
+    this.life = 0;
+    this.maxLife = Math.random() * 600 + 300;
+    this.isGold = Math.random() > 0.3;
+  }
+  update() { this.x += this.speedX; this.y += this.speedY; this.life++; if (this.life > this.maxLife) this.reset(); }
+  draw() {
+    const progress = this.life / this.maxLife;
+    const alpha = this.opacity * (progress < 0.3 ? progress / 0.3 : 1 - (progress - 0.3) / 0.7);
+    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+    if (this.isGold) {
+      grad.addColorStop(0, `rgba(212, 168, 83, ${alpha})`);
+      grad.addColorStop(0.5, `rgba(180, 140, 60, ${alpha * 0.3})`);
+    } else {
+      grad.addColorStop(0, `rgba(94, 196, 198, ${alpha})`);
+      grad.addColorStop(0.5, `rgba(70, 160, 165, ${alpha * 0.3})`);
+    }
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.fillRect(this.x - this.size, this.y - this.size, this.size * 2, this.size * 2);
+  }
+}
+for (let i = 0; i < 25; i++) { const p = new Particle(); p.life = Math.random() * p.maxLife; particles.push(p); }
+function animateSmoke() {
+  ctx.clearRect(0, 0, w, h);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animateSmoke);
+}
+animateSmoke();
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+function closeMenu() { document.getElementById('navLinks').classList.remove('open'); }
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 100); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
