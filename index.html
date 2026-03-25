@@ -8,27 +8,27 @@
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --gold: #d4a853;
-  --gold-light: #e8c97a;
-  --gold-dim: #b8923e;
-  --gold-glow: rgba(212, 168, 83, 0.3);
-  --gold-subtle: rgba(212, 168, 83, 0.08);
-  --green: #39ff6e;
-  --green-light: #5cff8a;
-  --green-dim: #2ecc5e;
-  --green-glow: rgba(57, 255, 110, 0.3);
-  --green-subtle: rgba(57, 255, 110, 0.08);
-  --cyan: #5ec4c6;
-  --cyan-dim: #4aa8aa;
-  --cyan-glow: rgba(94, 196, 198, 0.25);
-  --cyan-subtle: rgba(94, 196, 198, 0.06);
+  --gold: #1a9fff;
+  --gold-light: #4db8ff;
+  --gold-dim: #0d7fd4;
+  --gold-glow: rgba(26, 159, 255, 0.3);
+  --gold-subtle: rgba(26, 159, 255, 0.08);
+  --green: #00d4ff;
+  --green-light: #33e0ff;
+  --green-dim: #00b4d8;
+  --green-glow: rgba(0, 212, 255, 0.3);
+  --green-subtle: rgba(0, 212, 255, 0.08);
+  --cyan: #00e5ff;
+  --cyan-dim: #00c4d8;
+  --cyan-glow: rgba(0, 229, 255, 0.25);
+  --cyan-subtle: rgba(0, 229, 255, 0.06);
   --dark: #08080a;
   --dark-card: #0d0d10;
   --dark-surface: #111115;
   --dark-border: #1c1c22;
-  --text: #e4e2dd;
-  --text-dim: #8a877e;
-  --text-muted: #555350;
+  --text: #e8eaf0;
+  --text-dim: #8a8f9e;
+  --text-muted: #50535e;
 }
 html { scroll-behavior: smooth; }
 body {
@@ -117,17 +117,17 @@ nav.scrolled {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 25%, rgba(212, 168, 83, 0.06) 0%, transparent 55%),
-    radial-gradient(ellipse at 25% 75%, rgba(94, 196, 198, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 65%, rgba(212, 168, 83, 0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 50% 25%, rgba(26, 159, 255, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 25% 75%, rgba(0, 229, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 65%, rgba(26, 159, 255, 0.03) 0%, transparent 50%);
   z-index: -1;
 }
 .hero-grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(212,168,83,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(94,196,198,0.015) 1px, transparent 1px);
+    linear-gradient(rgba(26,159,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.015) 1px, transparent 1px);
   background-size: 60px 60px;
   z-index: -1;
   animation: gridPulse 8s ease-in-out infinite;
@@ -183,7 +183,7 @@ nav.scrolled {
 }
 .hero-title .o-slash {
   color: var(--green-light);
-  text-shadow: 0 0 30px var(--green-glow), 0 0 60px rgba(0,255,100,0.2);
+  text-shadow: 0 0 30px var(--green-glow), 0 0 60px rgba(0,212,255,0.2);
 }
 .hero-subtitle {
   font-family: 'Raleway', sans-serif;
@@ -311,9 +311,9 @@ section {
   border-radius: 50%;
   animation: rotateRing 20s linear infinite;
 }
-.eye-ring:nth-child(1) { width: 280px; height: 280px; border: 1px solid rgba(212, 168, 83, 0.15); }
-.eye-ring:nth-child(2) { width: 220px; height: 220px; animation-direction: reverse; animation-duration: 15s; border: 1px solid rgba(94, 196, 198, 0.12); }
-.eye-ring:nth-child(3) { width: 160px; height: 160px; animation-duration: 25s; border: 1px solid rgba(212, 168, 83, 0.2); }
+.eye-ring:nth-child(1) { width: 280px; height: 280px; border: 1px solid rgba(26, 159, 255, 0.15); }
+.eye-ring:nth-child(2) { width: 220px; height: 220px; animation-direction: reverse; animation-duration: 15s; border: 1px solid rgba(0, 229, 255, 0.12); }
+.eye-ring:nth-child(3) { width: 160px; height: 160px; animation-duration: 25s; border: 1px solid rgba(26, 159, 255, 0.2); }
 .eye-ring:nth-child(1)::before {
   content: ''; position: absolute; top: -3px; left: 50%;
   width: 6px; height: 6px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 10px var(--gold-glow);
@@ -329,7 +329,7 @@ section {
 @keyframes rotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .eye-center {
   width: 60px; height: 60px;
-  background: radial-gradient(circle, var(--gold) 0%, rgba(212,168,83,0.2) 50%, transparent 70%);
+  background: radial-gradient(circle, var(--gold) 0%, rgba(26,159,255,0.2) 50%, transparent 70%);
   border-radius: 50%;
   animation: pulseGlow 3s ease-in-out infinite;
 }
@@ -365,7 +365,7 @@ section {
 }
 .pillar-card:hover::before { opacity: 1; }
 .pillar-card:hover {
-  border-color: rgba(212,168,83,0.15);
+  border-color: rgba(26,159,255,0.15);
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
@@ -380,7 +380,7 @@ section {
   font-family: 'Montserrat', sans-serif;
   font-size: 3rem;
   font-weight: 900;
-  background: linear-gradient(135deg, rgba(212,168,83,0.1), rgba(94,196,198,0.05));
+  background: linear-gradient(135deg, rgba(26,159,255,0.1), rgba(0,229,255,0.05));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -454,7 +454,7 @@ section {
   cursor: pointer;
 }
 .video-card:hover {
-  border-color: rgba(212,168,83,0.2);
+  border-color: rgba(26,159,255,0.2);
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
@@ -472,7 +472,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(212,168,83,0.04), rgba(94,196,198,0.03));
+  background: linear-gradient(135deg, rgba(26,159,255,0.04), rgba(0,229,255,0.03));
 }
 .play-icon {
   width: 50px; height: 50px;
@@ -808,19 +808,19 @@ class Particle {
     this.opacity = Math.random() * 0.07 + 0.02;
     this.life = 0;
     this.maxLife = Math.random() * 600 + 300;
-    this.isGold = Math.random() > 0.3;
+    this.isBlue = Math.random() > 0.3;
   }
   update() { this.x += this.speedX; this.y += this.speedY; this.life++; if (this.life > this.maxLife) this.reset(); }
   draw() {
     const progress = this.life / this.maxLife;
     const alpha = this.opacity * (progress < 0.3 ? progress / 0.3 : 1 - (progress - 0.3) / 0.7);
     const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-    if (this.isGold) {
-      grad.addColorStop(0, `rgba(212, 168, 83, ${alpha})`);
-      grad.addColorStop(0.5, `rgba(180, 140, 60, ${alpha * 0.3})`);
+    if (this.isBlue) {
+      grad.addColorStop(0, `rgba(26, 159, 255, ${alpha})`);
+      grad.addColorStop(0.5, `rgba(13, 127, 212, ${alpha * 0.3})`);
     } else {
-      grad.addColorStop(0, `rgba(94, 196, 198, ${alpha})`);
-      grad.addColorStop(0.5, `rgba(70, 160, 165, ${alpha * 0.3})`);
+      grad.addColorStop(0, `rgba(0, 229, 255, ${alpha})`);
+      grad.addColorStop(0.5, `rgba(0, 180, 216, ${alpha * 0.3})`);
     }
     grad.addColorStop(1, 'transparent');
     ctx.fillStyle = grad;
