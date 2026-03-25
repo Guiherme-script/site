@@ -164,15 +164,6 @@ nav.scrolled {
   background: var(--cyan);
   opacity: 0.5;
 }
-.hero-name-script {
-  font-family: 'Ravellin', cursive;
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-  font-weight: 500;
-  color: var(--green-light);
-  letter-spacing: 0.02em;
-  margin-bottom: 0.3rem;
-  text-shadow: 0 0 20px var(--green-glow);
-}
 .hero-title {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(3rem, 7vw, 6rem);
@@ -181,6 +172,21 @@ nav.scrolled {
   margin-bottom: 0.4rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  position: relative;
+}
+.hero-name-script {
+  font-family: 'Ravellin', cursive;
+  font-size: 0.35em;
+  font-weight: 400;
+  color: var(--green-light);
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 20px var(--green-glow);
+  text-transform: none;
+  position: absolute;
+  top: -0.6em;
+  left: 1.8em;
+  transform: rotate(-3deg);
+  transform-origin: right center;
 }
 .hero-title .o-slash {
   color: var(--green-light);
@@ -630,8 +636,8 @@ footer {
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-tag">Consciência &bull; Identidade &bull; Transformação</div>
-    <div class="hero-name-script">Guilherme</div>
     <h1 class="hero-title">
+      <span class="hero-name-script">Guilherme</span>
       <span class="o-slash">Ø</span>CONKER
     </h1>
     <p class="hero-subtitle">A verdade na mente ainda é ilusão</p>
