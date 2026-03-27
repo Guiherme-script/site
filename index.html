@@ -138,7 +138,7 @@ footer{padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(58,124,19
   <button class="hero-cta-main" onclick="startQuiz()">Descobrir meu caminho</button>
   <div class="hero-youtube">
     <a href="https://www.youtube.com/@oconker-0" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2A31.9 31.9 0 0 0 0 12a31.9 31.9 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.9 31.9 0 0 0 24 12a31.9 31.9 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.9 31.9 0 0 0 0 12a31.9 31.9 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.9 31.9 0 0 0 24 12a31.9 31.9 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
       Assistir conteúdo gratuito no YouTube
     </a>
   </div>
@@ -241,7 +241,7 @@ footer{padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(58,124,19
   <button class="result-cta-waitlist" id="mentoriaWaitlistBtn" onclick="handleWaitlist('mentoria')">Garantir minha vaga na lista</button>
   <div class="result-individual">
     <p>Prefere acompanhamento individual e exclusivo?</p>
-    <a href="https://wa.me/SEUNUMERO?text=Olá%2C%20tenho%20interesse%20na%20mentoria%20individual%20com%20o%20Guilherme." target="_blank">Falar diretamente comigo no WhatsApp →</a>
+    <a href="https://wa.me/SEUNUMERO?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20mentoria%20individual%20com%20o%20Guilherme." target="_blank">Falar diretamente comigo no WhatsApp →</a>
   </div>
 </div>
 </section>
@@ -366,7 +366,33 @@ function submitCapture() {
     showInlineMessage('captureFeedback', 'Digite um email válido.', true);
     return;
   }
-  console.log('Lead:', { name: name, email: email, whatsapp: whatsapp, result: userResult, score: score });
+  // Salvar lead no Notion
+  var prodMap = { resultLivro: 'Livro', resultCurso: 'Curso', resultMentoria: 'Mentoria' };
+  var produto = prodMap[userResult] || 'Livro';
+  fetch('https://api.notion.com/v1/pages', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer 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',
+      'Content-Type': 'application/json',
+      'Notion-Version': '2022-06-28'
+    },
+    body: JSON.stringify({
+      parent: { database_id: 'b9477be2190f4e94887f03e451218e7e' },
+      properties: {
+        'Nome': { title: [{ text: { content: name } }] },
+        'Email': { email: email },
+        'WhatsApp': { phone_number: whatsapp },
+        'Produto Recomendado': { select: { name: produto } },
+        'Score do Quiz': { number: score },
+        'Status': { select: { name: 'Novo' } }
+      }
+    })
+  }).then(function(r) {
+    console.log('Lead salvo no Notion, status:', r.status);
+  }).catch(function(e) {
+    console.warn('Notion API error (lead não salvo):', e);
+  });
+  // Navegar para o resultado sem esperar pela API
   document.getElementById('captureScreen').classList.remove('active');
   document.getElementById(userResult).classList.add('active');
   document.getElementById('footerSection').style.display = 'block';
