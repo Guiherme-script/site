@@ -3,785 +3,433 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guilherme Oconker — A Verdade na Mente Ainda é Ilusão</title>
-<meta name="description" content="Consciência, identidade e transmutação. Onde a ciência moderna, a psicologia profunda e a sabedoria milenar convergem.">
+<title>Guilherme Oconker — Descubra Seu Caminho</title>
+<meta name="description" content="Responda algumas perguntas e descubra o caminho certo para a sua transformação.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/ravellin" rel="stylesheet">
 <style>
-  :root {
-    --bg: #08080c;
-    --bg-2: #0e0e14;
-    --bg-3: #141420;
-    --text: #d4d8e8;
-    --text-dim: #6a7590;
-    --text-bright: #e8eaf0;
-    --accent: #1a9fff;
-    --accent-light: #4db8ff;
-    --accent-glow: rgba(26, 159, 255, 0.15);
-    --cyan: #00e5ff;
-    --cyan-glow: rgba(0, 229, 255, 0.25);
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'Outfit', system-ui, sans-serif;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-  ::selection {
-    background: var(--accent);
-    color: var(--bg);
-  }
-  #smoke-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.35;
-  }
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 1.2rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(8, 8, 12, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    transition: all 0.4s ease;
-  }
-  nav.scrolled {
-    padding: 0.8rem 2rem;
-    background: rgba(8, 8, 12, 0.95);
-  }
-  .nav-logo {
-    font-family: var(--sans);
-    font-weight: 500;
-    font-size: 0.85rem;
-    letter-spacing: 0.3em;
-    color: var(--text-bright);
-    text-decoration: none;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover { color: var(--accent-light); }
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 101;
-  }
-  .nav-hamburger span { width: 24px; height: 2px; background: var(--text); transition: all 0.3s; }
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 6rem 2rem 4rem;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 1s 0.3s forwards;
-  }
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    font-weight: 300;
-    line-height: 1.15;
-    color: var(--text-bright);
-    max-width: 700px;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 1s 0.5s forwards;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent-light);
-  }
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--text-dim);
-    max-width: 520px;
-    margin-bottom: 3rem;
-    line-height: 1.8;
-    opacity: 0;
-    animation: fadeUp 1s 0.7s forwards;
-  }
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.9rem 2rem;
-    border: 1px solid var(--accent);
-    color: var(--accent-light);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    opacity: 0;
-    animation: fadeUp 1s 0.9s forwards;
-  }
-  .hero-cta:hover {
-    background: var(--accent);
-    color: var(--bg);
-  }
-  .hero-cta svg {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-  }
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    opacity: 0;
-    animation: fadeUp 1s 1.2s forwards;
-  }
-  .scroll-hint::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(var(--text-dim), transparent);
-    margin: 0.8rem auto 0;
-  }
-  /* ── SECTION GENERAL ── */
-  section {
-    padding: 6rem 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-  .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 300;
-    color: var(--text-bright);
-    line-height: 1.3;
-    margin-bottom: 2rem;
-  }
-  .section-body p {
-    margin-bottom: 1.2rem;
-    color: var(--text);
-    font-size: 1rem;
-  }
-  .divider {
-    width: 60px;
-    height: 1px;
-    background: var(--accent);
-    margin: 4rem auto;
-    box-shadow: 0 0 10px var(--accent-glow);
-    position: relative;
-    z-index: 1;
-  }
-  /* ── QUEM SOU ── */
-  .quem-sou {
-    border-top: 1px solid rgba(255,255,255,0.04);
-  }
-  .quem-sou .highlight {
-    font-family: var(--serif);
-    font-size: 1.3rem;
-    font-style: italic;
-    color: var(--accent-light);
-    line-height: 1.8;
-    margin: 2rem 0;
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--accent);
-  }
-  /* ── SÉRIE ── */
-  .serie {
-    background: var(--bg-2);
-    max-width: 100%;
-    padding: 6rem 2rem;
-  }
-  .serie-inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .serie-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    margin-top: 2.5rem;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .serie-ep {
-    display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    padding: 1.5rem 2rem;
-    background: var(--bg-2);
-    transition: background 0.3s;
-  }
-  .serie-ep:hover { background: var(--bg-3); }
-  .serie-ep .ep-num {
-    font-family: var(--serif);
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--accent);
-    min-width: 50px;
-  }
-  .serie-ep .ep-title {
-    font-size: 1rem;
-    color: var(--text-bright);
-    font-weight: 400;
-  }
-  .serie-ep .ep-desc {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-top: 0.3rem;
-  }
-  .serie-ep .ep-tag {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-top: 0.4rem;
-    display: inline-block;
-  }
-  .serie-cta {
-    text-align: center;
-    margin-top: 2.5rem;
-  }
-  .serie-cta a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.8rem;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    border-radius: 4px;
-  }
-  .serie-cta a:hover {
-    border-color: var(--accent);
-    color: var(--accent-light);
-  }
-  /* ── LIVRO ── */
-  .livro {
-    border-top: 1px solid rgba(255,255,255,0.04);
-  }
-  .livro-card {
-    margin-top: 2rem;
-    padding: 3rem;
-    background: var(--bg-3);
-    border: 1px solid rgba(26, 159, 255, 0.2);
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-  }
-  .livro-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), var(--cyan), transparent);
-  }
-  .livro-badge {
-    display: inline-block;
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    border: 1px solid var(--accent);
-    padding: 0.3rem 0.8rem;
-    border-radius: 2px;
-    margin-bottom: 1.5rem;
-  }
-  .livro-title {
-    font-family: var(--serif);
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: var(--text-bright);
-    margin-bottom: 0.5rem;
-  }
-  .livro-sub {
-    font-size: 0.95rem;
-    color: var(--text-dim);
-    font-style: italic;
-    margin-bottom: 1.5rem;
-  }
-  .livro-desc {
-    color: var(--text);
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-  }
-  .livro-items {
-    list-style: none;
-    margin-bottom: 2rem;
-  }
-  .livro-items li {
-    padding: 0.5rem 0;
-    color: var(--text);
-    font-size: 0.9rem;
-    display: flex;
-    align-items: baseline;
-    gap: 0.8rem;
-  }
-  .livro-items li::before {
-    content: '\2014';
-    color: var(--accent);
-    flex-shrink: 0;
-  }
-  .livro-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 1rem 2.2rem;
-    background: var(--accent);
-    color: var(--bg);
-    text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: none;
-    transition: all 0.3s;
-    border-radius: 4px;
-  }
-  .livro-btn:hover {
-    background: var(--accent-light);
-    box-shadow: 0 0 25px var(--accent-glow);
-  }
-  .livro-price {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-top: 1rem;
-  }
-  /* ── QUOTE ── */
-  .quote-section {
-    text-align: center;
-    padding: 5rem 2rem;
-    max-width: 650px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-  .quote-mark {
-    font-family: var(--serif);
-    font-size: 4rem;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-  .quote-text {
-    font-family: var(--serif);
-    font-size: 1.4rem;
-    font-style: italic;
-    color: var(--text-bright);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-  .quote-author {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
-  /* ── NEWSLETTER ── */
-  .newsletter {
-    background: var(--bg-2);
-    max-width: 100%;
-    padding: 5rem 2rem;
-    text-align: center;
-  }
-  .newsletter-inner {
-    max-width: 520px;
-    margin: 0 auto;
-  }
-  .newsletter .section-title {
-    margin-bottom: 1rem;
-  }
-  .newsletter-desc {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-    line-height: 1.8;
-  }
-  .newsletter-form {
-    display: flex;
-    gap: 0;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-  .newsletter-form input {
-    flex: 1;
-    padding: 0.9rem 1.2rem;
-    background: var(--bg);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-right: none;
-    border-radius: 4px 0 0 4px;
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 0.85rem;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  .newsletter-form input:focus {
-    border-color: var(--accent);
-  }
-  .newsletter-form input::placeholder {
-    color: var(--text-dim);
-  }
-  .newsletter-form button {
-    padding: 0.9rem 1.5rem;
-    background: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-    color: var(--bg);
-    font-family: var(--sans);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .newsletter-form button:hover {
-    background: var(--accent-light);
-  }
-  .newsletter-note {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    margin-top: 1rem;
-  }
-  /* ── FOOTER ── */
-  footer {
-    padding: 3rem 2rem;
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.04);
-    position: relative;
-    z-index: 1;
-  }
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  .footer-links a {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .footer-links a:hover { color: var(--accent-light); }
-  .footer-copy {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.15);
-    letter-spacing: 0.1em;
-  }
-  /* ── REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    nav { padding: 1rem; }
-    .nav-links { display: none; }
-    .nav-hamburger { display: flex; }
-    .nav-links.open {
-      display: flex; flex-direction: column; position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(8,8,12,0.97);
-      justify-content: center; align-items: center; gap: 2rem; z-index: 100;
-    }
-    .nav-links.open a { font-size: 1.1rem; }
-    section { padding: 4rem 1.5rem; }
-    .serie { padding: 4rem 1.5rem; }
-    .serie-ep { flex-direction: column; gap: 0.3rem; padding: 1.2rem 1.5rem; }
-    .livro-card { padding: 2rem 1.5rem; }
-    .newsletter-form { flex-direction: column; }
-    .newsletter-form input { border-right: 1px solid rgba(255,255,255,0.08); border-radius: 4px; }
-    .newsletter-form button { border-radius: 4px; }
-    .footer-links { flex-wrap: wrap; gap: 1rem; }
-  }
+:root {
+  --bg: #060810;
+  --bg-2: #0c1020;
+  --bg-3: #141a2e;
+  --text: #c8cdd8;
+  --text-dim: #556080;
+  --text-bright: #e4e8f2;
+  --accent: #3a7cc4;
+  --accent-light: #6aaee8;
+  --accent-glow: rgba(58,124,196,0.12);
+  --accent-deep: #1e4a80;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Outfit', system-ui, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;}
+::selection{background:var(--accent);color:var(--bg);}
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(6,8,16,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(58,124,196,0.06);}
+.nav-logo{font-family:var(--sans);font-weight:500;font-size:0.85rem;letter-spacing:0.3em;color:var(--text-bright);text-decoration:none;cursor:pointer;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.3s;cursor:pointer;}
+.nav-links a:hover{color:var(--accent-light);}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-30%;left:40%;width:700px;height:700px;background:radial-gradient(ellipse,rgba(42,90,160,0.15) 0%,rgba(30,74,128,0.05) 40%,transparent 70%);pointer-events:none;filter:blur(40px);}
+.hero::after{content:'';position:absolute;bottom:-20%;right:30%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(58,124,196,0.08) 0%,transparent 70%);pointer-events:none;filter:blur(50px);}
+.hero-label{font-size:0.68rem;letter-spacing:0.5em;text-transform:uppercase;color:var(--accent-light);margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards;position:relative;}
+.hero h1{font-family:var(--serif);font-size:clamp(2.2rem,6vw,4.2rem);font-weight:300;line-height:1.2;color:var(--text-bright);max-width:650px;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.4s forwards;position:relative;}
+.hero h1 em{font-style:italic;color:var(--accent-light);}
+.hero-sub{font-size:1rem;color:var(--text-dim);max-width:480px;margin-bottom:2.5rem;line-height:1.8;opacity:0;animation:fadeUp 0.8s 0.6s forwards;position:relative;}
+.hero-cta-main{display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2.4rem;background:var(--accent);color:#fff;text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all 0.3s;opacity:0;animation:fadeUp 0.8s 0.8s forwards;position:relative;box-shadow:0 0 30px rgba(58,124,196,0.2);}
+.hero-cta-main:hover{background:var(--accent-light);box-shadow:0 0 40px rgba(106,174,232,0.25);}
+.hero-youtube{margin-top:1.5rem;opacity:0;animation:fadeUp 0.8s 1s forwards;position:relative;}
+.hero-youtube a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color 0.3s;}
+.hero-youtube a:hover{color:var(--text);}
+.hero-youtube svg{width:16px;height:16px;fill:currentColor;}
+.screen{display:none;min-height:100vh;padding:6rem 2rem 4rem;}
+.screen.active{display:flex;flex-direction:column;justify-content:center;align-items:center;}
+.quiz-wrap{max-width:540px;width:100%;text-align:center;}
+.quiz-step-label{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem;}
+.quiz-progress-bar{width:100%;height:3px;background:var(--bg-3);border-radius:2px;margin-bottom:2rem;overflow:hidden;}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent-deep),var(--accent-light));border-radius:2px;transition:width 0.4s ease;}
+.quiz-question{font-family:var(--serif);font-size:clamp(1.3rem,3.5vw,1.7rem);font-weight:400;color:var(--text-bright);line-height:1.4;margin-bottom:2rem;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;}
+.quiz-option{padding:1rem 1.5rem;background:var(--bg-2);border:1px solid rgba(58,124,196,0.1);border-radius:6px;color:var(--text);font-family:var(--sans);font-size:0.88rem;font-weight:300;cursor:pointer;text-align:left;transition:all 0.25s;display:flex;align-items:center;gap:12px;}
+.quiz-option:hover{border-color:var(--accent);background:rgba(58,124,196,0.08);}
+.quiz-option .opt-letter{font-size:0.68rem;font-weight:500;letter-spacing:0.1em;color:var(--accent-light);min-width:18px;}
+.capture-wrap{max-width:460px;width:100%;text-align:center;}
+.capture-title{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--text-bright);margin-bottom:0.8rem;}
+.capture-desc{font-size:0.9rem;color:var(--text-dim);line-height:1.8;margin-bottom:2rem;}
+.capture-form{display:flex;flex-direction:column;gap:10px;}
+.capture-input{padding:0.85rem 1rem;background:var(--bg-2);border:1px solid rgba(58,124,196,0.12);border-radius:4px;color:var(--text);font-family:var(--sans);font-size:0.85rem;outline:none;transition:border-color 0.3s;}
+.capture-input:focus{border-color:var(--accent);}
+.capture-input::placeholder{color:var(--text-dim);}
+.capture-btn{padding:0.9rem;background:var(--accent);border:none;border-radius:4px;color:#fff;font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:4px;box-shadow:0 0 20px rgba(58,124,196,0.15);}
+.capture-btn:hover{background:var(--accent-light);}
+.result-wrap{max-width:560px;width:100%;text-align:center;}
+.result-label{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--accent-light);margin-bottom:1.2rem;}
+.result-product-name{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.2rem);font-weight:400;color:var(--text-bright);margin-bottom:0.5rem;}
+.result-tagline{font-size:0.95rem;color:var(--text-dim);font-style:italic;margin-bottom:2rem;}
+.result-desc{font-size:0.95rem;color:var(--text);line-height:1.8;margin-bottom:2rem;text-align:left;}
+.result-items{list-style:none;text-align:left;margin-bottom:2rem;}
+.result-items li{padding:0.5rem 0;color:var(--text);font-size:0.88rem;display:flex;align-items:baseline;gap:0.8rem;}
+.result-items li::before{content:'—';color:var(--accent-light);flex-shrink:0;}
+.result-price{font-family:var(--serif);font-size:1.8rem;color:var(--accent-light);margin-bottom:0.3rem;}
+.result-price-note{font-size:0.78rem;color:var(--text-dim);margin-bottom:2rem;}
+.result-cta{display:inline-flex;padding:1rem 2.5rem;background:var(--accent);color:#fff;text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all 0.3s;box-shadow:0 0 25px rgba(58,124,196,0.2);}
+.result-cta:hover{background:var(--accent-light);box-shadow:0 0 35px rgba(106,174,232,0.25);}
+.result-cta-waitlist{display:inline-flex;padding:1rem 2.5rem;background:transparent;color:var(--text);text-decoration:none;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(58,124,196,0.2);border-radius:4px;cursor:pointer;transition:all 0.3s;}
+.result-cta-waitlist:hover{border-color:var(--accent);color:var(--accent-light);}
+.result-vsl{width:100%;aspect-ratio:16/9;background:var(--bg-3);border:1px solid rgba(58,124,196,0.08);border-radius:8px;margin-bottom:2rem;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:0.8rem;letter-spacing:0.1em;}
+.result-individual{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(58,124,196,0.08);text-align:center;}
+.result-individual p{font-size:0.82rem;color:var(--text-dim);margin-bottom:0.8rem;line-height:1.6;}
+.result-individual a{font-size:0.72rem;color:var(--accent-light);text-decoration:underline;text-underline-offset:3px;cursor:pointer;transition:color 0.3s;}
+.result-individual a:hover{color:var(--text-bright);}
+.upsell-card{margin-top:2.5rem;padding:1.5rem 2rem;background:var(--bg-2);border:1px solid rgba(58,124,196,0.15);border-radius:8px;text-align:left;position:relative;overflow:hidden;}
+.upsell-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
+.upsell-badge{display:inline-block;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;background:rgba(58,124,196,0.15);color:var(--accent-light);padding:3px 8px;border-radius:2px;margin-bottom:0.8rem;}
+.upsell-title{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--text-bright);margin-bottom:0.4rem;}
+.upsell-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.7;margin-bottom:1rem;}
+.upsell-price-row{display:flex;align-items:baseline;gap:0.8rem;margin-bottom:1rem;}
+.upsell-price{font-family:var(--serif);font-size:1.3rem;color:var(--accent-light);}
+.upsell-price-note{font-size:0.75rem;color:var(--text-dim);}
+.upsell-check{display:flex;align-items:center;gap:10px;cursor:pointer;padding:0.6rem 0;}
+.upsell-check input[type="checkbox"]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer;}
+.upsell-check label{font-size:0.85rem;color:var(--text);cursor:pointer;}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(6,8,16,0.95);backdrop-filter:blur(30px);z-index:200;justify-content:center;align-items:center;padding:2rem;}
+.modal-overlay.active{display:flex;}
+.modal-box{max-width:420px;width:100%;text-align:center;}
+.modal-box h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--text-bright);margin-bottom:0.8rem;}
+.modal-box p{font-size:0.88rem;color:var(--text-dim);margin-bottom:1.5rem;line-height:1.7;}
+.modal-box input,.modal-box textarea{width:100%;padding:0.85rem 1rem;background:var(--bg-2);border:1px solid rgba(58,124,196,0.12);border-radius:4px;color:var(--text);font-family:var(--sans);font-size:0.85rem;outline:none;margin-bottom:10px;}
+.modal-box input:focus,.modal-box textarea:focus{border-color:var(--accent);}
+.modal-box input::placeholder,.modal-box textarea::placeholder{color:var(--text-dim);}
+.modal-box textarea{min-height:100px;resize:vertical;}
+.modal-btn{width:100%;padding:0.85rem;background:var(--accent);border:none;border-radius:4px;color:#fff;font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+.modal-btn:hover{background:var(--accent-light);}
+.modal-close{margin-top:1rem;background:none;border:none;color:var(--text-dim);font-size:0.75rem;cursor:pointer;font-family:var(--sans);}
+footer{padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(58,124,196,0.06);}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.2rem;}
+.footer-links a{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.3s;cursor:pointer;}
+.footer-links a:hover{color:var(--accent-light);}
+.footer-copy{font-size:0.68rem;color:rgba(200,210,230,0.12);letter-spacing:0.1em;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:640px){
+  nav{padding:1rem;}
+  .nav-links{gap:1rem;}
+  .nav-links a{font-size:0.63rem;}
+  .screen{padding:5rem 1.5rem 3rem;}
+  .footer-links{flex-wrap:wrap;gap:1rem;}
+  .upsell-price-row{flex-direction:column;gap:0.2rem;}
+}
 </style>
 </head>
 <body>
-<canvas id="smoke-canvas"></canvas>
-<!-- NAV -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">OCONKER</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#quem-sou" onclick="closeMenu()">Sobre</a></li>
-    <li><a href="#serie" onclick="closeMenu()">Serie</a></li>
-    <li><a href="#livro" onclick="closeMenu()">Livro</a></li>
-    <li><a href="#comunidade" onclick="closeMenu()">Comunidade</a></li>
+<nav>
+  <a class="nav-logo" onclick="goHome()">ØCONKER</a>
+  <ul class="nav-links">
+    <li><a href="https://www.youtube.com/@oconker-0" target="_blank">YouTube</a></li>
+    <li><a onclick="openCommunityModal()">Comunidade</a></li>
+    <li><a onclick="openPartnershipModal()">Parcerias</a></li>
   </ul>
-  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
 </nav>
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-label">Consciencia &middot; Identidade &middot; Transmutacao</div>
-  <h1>Existe algo dentro de voce que esta <em>pulsando pra sair</em></h1>
-  <p class="hero-sub">Nao e falta de disciplina. Nao e fraqueza. E energia sem direcao. Aqui voce aprende a usar essa forca &mdash; nao a lutar contra ela.</p>
-  <a href="https://www.youtube.com/@oconker-0" class="hero-cta" target="_blank">
-    <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.9 31.9 0 0 0 0 12a31.9 31.9 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.9 31.9 0 0 0 24 12a31.9 31.9 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-    Assistir no YouTube
-  </a>
-  <div class="scroll-hint">Explorar</div>
-</section>
-<!-- QUEM SOU -->
-<section class="quem-sou reveal" id="quem-sou">
-  <div class="section-label">Quem sou</div>
-  <h2 class="section-title">Guilherme Oconker</h2>
-  <div class="section-body">
-    <p>Oconker vem de Conqueror &mdash; conquistador. Um nome que escolhi porque ele me escolheu primeiro.</p>
-    <p>Eu passei anos buscando respostas nos mesmos lugares que voce provavelmente ja buscou. Na religiao. Na filosofia. Na psicologia. Na autoajuda. Em gurus do digital e em tradicoes milenares. Comprei cursos, apliquei tecnicas, acreditei em metodos. E continuava no mesmo lugar.</p>
-    <p>Ate que cansei de acumular conhecimento que nao me transformava. E fui atras do que transforma de verdade.</p>
-    <div class="highlight">Nao sou influencer. Nao sou coach. Nao vendo formula. Sou um canalizador do invisivel &mdash; minha missao e expressar o que e eterno neste tempo, nesta geracao.</div>
-    <p>Aqui eu integro o que a ciencia moderna, a psicologia profunda e a sabedoria milenar concordam sobre como o ser humano realmente funciona. Nao para te motivar. Para ser um farol &mdash; um ponto de luz no tempo para que voce possa ver o que sempre esteve dentro de si.</p>
+<section class="hero" id="homeScreen">
+  <div class="hero-label">Consciência · Identidade · Transmutação</div>
+  <h1>Descubra o caminho certo para a sua <em>transformação</em></h1>
+  <p class="hero-sub">Responda algumas perguntas e eu te mostro exatamente por onde começar — de acordo com quem você é e o momento que está vivendo agora.</p>
+  <button class="hero-cta-main" onclick="startQuiz()">Descobrir meu caminho</button>
+  <div class="hero-youtube">
+    <a href="https://www.youtube.com/@oconker-0" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2A31.9 31.9 0 0 0 0 12a31.9 31.9 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.9 31.9 0 0 0 24 12a31.9 31.9 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      Assistir conteúdo gratuito no YouTube
+    </a>
   </div>
 </section>
-<div class="divider"></div>
-<!-- SERIE -->
-<section class="serie" id="serie">
-  <div class="serie-inner reveal">
-    <div class="section-label">Serie gratuita</div>
-    <h2 class="section-title">Os 4 Inimigos Invisiveis</h2>
-    <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem;">Quatro forcas estao sabotando a sua vida sem voce perceber. Cada episodio revela uma delas &mdash; e a solucao de cada uma depende de entender a anterior. No quinto episodio, a verdade que conecta tudo.</p>
-    <p style="color: var(--text-dim); font-size: 0.85rem;">Assista na ordem. Cada episodio depende do anterior.</p>
-    <div class="serie-grid">
-      <div class="serie-ep">
-        <span class="ep-num">01</span>
-        <div>
-          <div class="ep-title">O Inimigo Que Mora No Seu Corpo</div>
-          <div class="ep-desc">A energia estagnada que te leva ao celular as 2h da manha.</div>
-          <span class="ep-tag">Neurociencia &middot; Tradicoes Corporais</span>
-        </div>
-      </div>
-      <div class="serie-ep">
-        <span class="ep-num">02</span>
-        <div>
-          <div class="ep-title">O Inimigo Que Mora Na Sua Mente</div>
-          <div class="ep-desc">Os padroes mentais que mantem a energia presa sem voce perceber.</div>
-          <span class="ep-tag">Hermetismo &middot; Neurociencia</span>
-        </div>
-      </div>
-      <div class="serie-ep">
-        <span class="ep-num">03</span>
-        <div>
-          <div class="ep-title">O Inimigo Que Voce Esconde De Si Mesmo</div>
-          <div class="ep-desc">A sombra que consome metade da sua energia pra manter suas mascaras.</div>
-          <span class="ep-tag">Psicologia Profunda &middot; Sombra</span>
-        </div>
-      </div>
-      <div class="serie-ep">
-        <span class="ep-num">04</span>
-        <div>
-          <div class="ep-title">O Inimigo Que Se Disfarca De Prazer</div>
-          <div class="ep-desc">O ciclo de recompensa que te prende e a energia que ele desperdica.</div>
-          <span class="ep-tag">Dopamina &middot; Transmutacao</span>
-        </div>
-      </div>
-      <div class="serie-ep">
-        <span class="ep-num">05</span>
-        <div>
-          <div class="ep-title">A Verdade Que Conecta Tudo</div>
-          <div class="ep-desc">Os quatro inimigos sao um so. E existe um mapa para vence-lo.</div>
-          <span class="ep-tag">Integracao &middot; Revelacao</span>
-        </div>
-      </div>
-    </div>
-    <div class="serie-cta">
-      <a href="https://www.youtube.com/@oconker-0" target="_blank">Assistir Episodio 1 &rarr;</a>
-    </div>
+<section class="screen" id="quizScreen">
+<div class="quiz-wrap">
+  <div>
+    <div class="quiz-step-label" id="stepLabel">Pergunta 1 de 6</div>
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill" style="width:16.6%"></div></div>
   </div>
-</section>
-<!-- QUOTE -->
-<div class="quote-section reveal">
-  <div class="quote-mark">&ldquo;</div>
-  <div class="quote-text">Voce nao tem um problema de disciplina. Voce tem um problema de fiacao.</div>
-  <div class="quote-author">&mdash; Guilherme Oconker</div>
+  <div id="quizContent"></div>
 </div>
-<!-- LIVRO -->
-<section class="livro reveal" id="livro">
-  <div class="section-label">Ebook</div>
-  <h2 class="section-title">A Alquimia da Energia</h2>
-  <div class="livro-card">
-    <div class="livro-badge">Novo</div>
-    <div class="livro-title">Transmutacao, Chakras e Neurociencia</div>
-    <div class="livro-sub">O manual pratico que integra ciencia moderna e sabedoria milenar num sistema de transformacao.</div>
-    <p class="livro-desc">Para quem sente que tem uma energia dentro de si que nao esta sendo usada direito. Para quem ja tentou disciplina, forca de vontade e metodos &mdash; e continua no mesmo lugar. Para quem quer entender a propria energia em vez de lutar contra ela.</p>
-    <ul class="livro-items">
-      <li>7 capitulos com praticas aplicaveis no mesmo dia</li>
-      <li>Integracao entre Hermetismo, Tantra, Jung e Neurociencia</li>
-      <li>Protocolo completo de 90 dias em 3 fases</li>
-      <li>Formato PDF + EPUB &mdash; leia em qualquer dispositivo</li>
-      <li>Garantia de 7 dias &mdash; sem perguntas</li>
-    </ul>
-    <a href="#" class="livro-btn">Quero o Livro &rarr;</a>
-    <div class="livro-price">R$29,90 &mdash; Acesso imediato apos a compra</div>
-  </div>
 </section>
-<div class="divider"></div>
-<!-- NEWSLETTER -->
-<section class="newsletter" id="comunidade">
-  <div class="newsletter-inner reveal">
-    <div class="section-label">Comunidade</div>
-    <h2 class="section-title">Entre no Circulo</h2>
-    <p class="newsletter-desc">Um email por semana com uma reflexao que voce nao vai encontrar em nenhum outro lugar. Sobre energia, consciencia, sombra e transmutacao. Curto. Denso. Sem enrolacao.</p>
-    <div class="newsletter-form">
-      <input type="email" placeholder="Seu melhor email">
-      <button type="submit">Entrar</button>
+<section class="screen" id="captureScreen">
+<div class="capture-wrap">
+  <div style="font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--accent-light);margin-bottom:1.5rem;">Último passo</div>
+  <div class="capture-title">Pronto. Seu caminho está definido.</div>
+  <div class="capture-desc">Me deixa seu contato para eu te mostrar a recomendação personalizada — e para que eu possa te enviar conteúdo que vai te ajudar nessa jornada.</div>
+  <div class="capture-form">
+    <input type="text" class="capture-input" id="captureName" placeholder="Seu nome">
+    <input type="email" class="capture-input" id="captureEmail" placeholder="Seu melhor email">
+    <input type="tel" class="capture-input" id="captureWhatsapp" placeholder="WhatsApp (com DDD)">
+    <button class="capture-btn" onclick="submitCapture()">Ver minha recomendação</button>
+  </div>
+</div>
+</section>
+<section class="screen" id="resultLivro">
+<div class="result-wrap">
+  <div class="result-label">Seu caminho recomendado</div>
+  <div class="result-product-name">A Alquimia da Energia</div>
+  <div class="result-tagline">O mapa completo da transmutação energética</div>
+  <div class="result-desc">
+    Pelo que você me contou, o melhor ponto de partida é o mapa. Você precisa entender o que está acontecendo dentro de si antes de tentar mudar qualquer coisa — porque sem compreensão, qualquer técnica é band-aid.<br><br>
+    Este ebook integra quatro tradições que nunca foram unidas num único sistema prático: o Hermetismo, o Tantra, a Psicologia Profunda e a Neurociência Moderna. Cada capítulo entrega uma prática que você pode aplicar no mesmo dia — e um entendimento que muda a forma como você se vê.<br><br>
+    Não é teoria para acumular. É um manual para praticar. Com um protocolo de 90 dias que vai te levar da observação do seu padrão energético até a transmutação consciente — no seu ritmo, sem depender de ninguém.
+  </div>
+  <ul class="result-items">
+    <li>7 capítulos — cada um com uma prática aplicável no mesmo dia</li>
+    <li>Integração entre Hermetismo, Tantra, Jung e Neurociência</li>
+    <li>Protocolo completo de 90 dias estruturado em 3 fases</li>
+    <li>Formato PDF + EPUB — leia em qualquer dispositivo</li>
+    <li>Garantia incondicional de 7 dias</li>
+  </ul>
+  <div class="result-price">R$29,90</div>
+  <div class="result-price-note">Acesso imediato após a compra</div>
+  <div class="upsell-card">
+    <div class="upsell-badge">Oferta especial</div>
+    <div class="upsell-title">Audiobook — A Alquimia da Energia</div>
+    <div class="upsell-desc">O livro inteiro em narração profissional com trilha sonora imersiva. Para ouvir no carro, na academia, antes de dormir — e absorver o conteúdo pelo corpo, não só pela mente. Porque a transmutação começa no ouvido.</div>
+    <div class="upsell-price-row">
+      <span class="upsell-price">+ R$39,90</span>
+      <span class="upsell-price-note">Leve o audiobook junto com o ebook</span>
     </div>
-    <p class="newsletter-note">Sem spam. Cancele quando quiser. Seu email nao sera compartilhado.</p>
+    <div class="upsell-check">
+      <input type="checkbox" id="addAudiobook">
+      <label for="addAudiobook">Sim, quero o audiobook também</label>
+    </div>
   </div>
+  <div style="margin-top:2rem;text-align:center;">
+    <a href="#" class="result-cta" id="buyBtn" onclick="handleBuy(event)">Comprar agora</a>
+    <div id="totalPrice" style="font-size:0.82rem;color:var(--text-dim);margin-top:0.8rem;">Total: R$29,90</div>
+  </div>
+</div>
 </section>
-<!-- FOOTER -->
+<section class="screen" id="resultCurso">
+<div class="result-wrap">
+  <div class="result-label">Seu caminho recomendado</div>
+  <div class="result-product-name">A Alquimia da Energia — Imersão</div>
+  <div class="result-tagline">O processo guiado de transmutação</div>
+  <div class="result-vsl">VSL do curso em breve</div>
+  <div class="result-desc">Pelo que você me contou, você precisa de mais do que leitura — precisa de um processo estruturado, com vídeo-aulas, exercícios guiados e aprofundamento real. Este curso transforma o mapa do livro em jornada prática.</div>
+  <ul class="result-items">
+    <li>8 módulos em vídeo — aprofundamento que o livro não alcança</li>
+    <li>Práticas guiadas em vídeo para cada fase da transmutação</li>
+    <li>Exercícios progressivos com acompanhamento da evolução</li>
+    <li>Acesso à comunidade de alunos</li>
+    <li>Atualizações incluídas</li>
+  </ul>
+  <div style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;font-style:italic;">As inscrições abrem em breve.</div>
+  <div class="result-price-note" style="margin-bottom:2rem;">Você será o primeiro a saber — já tenho seu contato.</div>
+  <button class="result-cta-waitlist" id="cursoWaitlistBtn" onclick="handleWaitlist('curso')">Garantir minha vaga na lista</button>
+</div>
+</section>
+<section class="screen" id="resultMentoria">
+<div class="result-wrap">
+  <div class="result-label">Seu caminho recomendado</div>
+  <div class="result-product-name">Mentoria em Grupo — Transmutação Guiada</div>
+  <div class="result-tagline">A transformação completa com acompanhamento</div>
+  <div class="result-vsl">VSL da mentoria em breve</div>
+  <div class="result-desc">Pelo que você me contou, você está pronto para ir fundo. Você não precisa de mais informação — precisa de guia, de compromisso e de um grupo que te sustente no processo. A mentoria é isso: 8 semanas de trabalho real comigo e com no máximo 9 outras pessoas no mesmo caminho.</div>
+  <ul class="result-items">
+    <li>Turmas de no máximo 10 pessoas — acompanhamento real</li>
+    <li>Sessões ao vivo semanais com Oconker</li>
+    <li>Trabalho com sombra guiado</li>
+    <li>Protocolo personalizado de transmutação</li>
+    <li>Acesso vitalício ao material e à comunidade de ex-mentorados</li>
+  </ul>
+  <div style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;font-style:italic;">Turmas limitadas. Inscrições abrem em breve.</div>
+  <div class="result-price-note" style="margin-bottom:2rem;">Você será o primeiro a saber — já tenho seu contato.</div>
+  <button class="result-cta-waitlist" id="mentoriaWaitlistBtn" onclick="handleWaitlist('mentoria')">Garantir minha vaga na lista</button>
+  <div class="result-individual">
+    <p>Prefere acompanhamento individual e exclusivo?</p>
+    <a href="https://wa.me/SEUNUMERO?text=Olá%2C%20tenho%20interesse%20na%20mentoria%20individual%20com%20o%20Guilherme." target="_blank">Falar diretamente comigo no WhatsApp →</a>
+  </div>
+</div>
+</section>
+<div class="modal-overlay" id="communityModal">
+<div class="modal-box">
+  <h3>A Comunidade Oconker</h3>
+  <p>As inscrições estão fechadas no momento. Deixe seu email para entrar na fila de espera e ser avisado quando as vagas forem abertas.</p>
+  <input type="email" id="communityEmail" placeholder="Seu melhor email">
+  <div id="communityFeedback"></div>
+  <button class="modal-btn" onclick="submitCommunityWaitlist()">Entrar na fila de espera</button>
+  <button class="modal-close" onclick="closeCommunityModal()">Voltar</button>
+</div>
+</div>
+<div class="modal-overlay" id="partnershipModal">
+<div class="modal-box">
+  <h3>Parcerias e propostas</h3>
+  <p>Se você é uma empresa ou pessoa interessada em colaborar, deixe sua proposta abaixo. A mensagem será enviada diretamente para mim.</p>
+  <input type="text" id="partnerName" placeholder="Seu nome ou empresa">
+  <input type="email" id="partnerEmail" placeholder="Email de contato">
+  <textarea id="partnerMessage" placeholder="Descreva sua proposta..."></textarea>
+  <div id="partnerFeedback"></div>
+  <button class="modal-btn" onclick="submitPartnership()">Enviar proposta</button>
+  <button class="modal-close" onclick="closePartnershipModal()">Voltar</button>
+</div>
+</div>
+<div id="footerSection" style="display:none;">
 <footer>
   <div class="footer-links">
     <a href="https://www.youtube.com/@oconker-0" target="_blank">YouTube</a>
     <a href="https://www.instagram.com/Guilhermeoconker/" target="_blank">Instagram</a>
-    <a href="#comunidade">Newsletter</a>
+    <a onclick="openCommunityModal()">Comunidade</a>
+    <a onclick="openPartnershipModal()">Parcerias</a>
   </div>
-  <div class="footer-copy">
-    A verdade na mente ainda e ilusao. &mdash; &copy; 2026 Guilherme Oconker
-  </div>
+  <div class="footer-copy">A verdade na mente ainda é ilusão. — © 2026 Guilherme Oconker</div>
 </footer>
+</div>
 <script>
-// Smoke particles
-const canvas = document.getElementById('smoke-canvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-let w, h;
-function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-resize();
-window.addEventListener('resize', resize);
-class Particle {
-  constructor() { this.reset(); }
-  reset() {
-    this.x = Math.random() * w;
-    this.y = h + Math.random() * 100;
-    this.size = Math.random() * 120 + 40;
-    this.speedY = -(Math.random() * 0.4 + 0.1);
-    this.speedX = (Math.random() - 0.5) * 0.3;
-    this.opacity = Math.random() * 0.07 + 0.02;
-    this.life = 0;
-    this.maxLife = Math.random() * 600 + 300;
-    this.isBlue = Math.random() > 0.3;
-  }
-  update() { this.x += this.speedX; this.y += this.speedY; this.life++; if (this.life > this.maxLife) this.reset(); }
-  draw() {
-    const progress = this.life / this.maxLife;
-    const alpha = this.opacity * (progress < 0.3 ? progress / 0.3 : 1 - (progress - 0.3) / 0.7);
-    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-    if (this.isBlue) {
-      grad.addColorStop(0, `rgba(26, 159, 255, ${alpha})`);
-      grad.addColorStop(0.5, `rgba(13, 127, 212, ${alpha * 0.3})`);
-    } else {
-      grad.addColorStop(0, `rgba(0, 229, 255, ${alpha})`);
-      grad.addColorStop(0.5, `rgba(0, 180, 216, ${alpha * 0.3})`);
-    }
-    grad.addColorStop(1, 'transparent');
-    ctx.fillStyle = grad;
-    ctx.fillRect(this.x - this.size, this.y - this.size, this.size * 2, this.size * 2);
-  }
+var questions = [
+  { q: "O que te trouxe até aqui?", opts: [
+    { letter: "A", text: "Uma inquietação que não tem nome — sinto que algo precisa mudar", val: 0 },
+    { letter: "B", text: "Quero aprender a controlar impulsos e usar minha energia melhor", val: 1 },
+    { letter: "C", text: "Estou num ponto de virada — preciso de transformação real e profunda", val: 2 }
+  ]},
+  { q: "Onde você está agora na sua jornada de autoconhecimento?", opts: [
+    { letter: "A", text: "No começo — sinto que tem algo errado mas não sei o que é", val: 0 },
+    { letter: "B", text: "Já estudei bastante — leio, assisto, pesquiso, mas não consigo aplicar de forma consistente", val: 1 },
+    { letter: "C", text: "Já pratico — mas travei num ponto e preciso de orientação para avançar", val: 2 }
+  ]},
+  { q: "Qual é o maior obstáculo que você enfrenta hoje?", opts: [
+    { letter: "A", text: "Não entendo direito o que está acontecendo dentro de mim", val: 0 },
+    { letter: "B", text: "Entendo a teoria mas não consigo transformar em prática", val: 1 },
+    { letter: "C", text: "Já tentei de tudo sozinho — preciso de alguém que me guie", val: 2 }
+  ]},
+  { q: "Como você prefere aprender?", opts: [
+    { letter: "A", text: "Lendo e praticando no meu ritmo, sozinho", val: 0 },
+    { letter: "B", text: "Com um processo estruturado — passo a passo, com orientação clara", val: 1 },
+    { letter: "C", text: "Com acompanhamento direto — preciso de compromisso e de um grupo", val: 2 }
+  ]},
+  { q: "Quanto tempo e energia você está disposto a investir agora?", opts: [
+    { letter: "A", text: "10-15 minutos por dia — quero começar leve", val: 0 },
+    { letter: "B", text: "30-60 minutos por dia — estou disposto a me comprometer", val: 1 },
+    { letter: "C", text: "O que for necessário — essa é minha prioridade agora", val: 2 }
+  ]},
+  { q: "O que você espera como resultado?", opts: [
+    { letter: "A", text: "Entender meus padrões e ter ferramentas para começar a mudar", val: 0 },
+    { letter: "B", text: "Dominar um sistema completo de transmutação que eu possa usar pro resto da vida", val: 1 },
+    { letter: "C", text: "Uma transformação profunda — quero sair do outro lado como uma pessoa diferente", val: 2 }
+  ]}
+];
+var currentQ = 0, score = 0, userResult = '';
+function startQuiz() {
+  document.getElementById('homeScreen').style.display = 'none';
+  document.getElementById('quizScreen').classList.add('active');
+  currentQ = 0; score = 0;
+  renderQuestion();
+  window.scrollTo(0, 0);
 }
-for (let i = 0; i < 25; i++) { const p = new Particle(); p.life = Math.random() * p.maxLife; particles.push(p); }
-function animateSmoke() {
-  ctx.clearRect(0, 0, w, h);
-  particles.forEach(p => { p.update(); p.draw(); });
-  requestAnimationFrame(animateSmoke);
-}
-animateSmoke();
-// Nav scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
-// Mobile menu
-function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
-function closeMenu() { document.getElementById('navLinks').classList.remove('open'); }
-// Reveal on scroll
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 100); observer.unobserve(entry.target); }
+function renderQuestion() {
+  var q = questions[currentQ], total = questions.length;
+  document.getElementById('stepLabel').textContent = 'Pergunta ' + (currentQ + 1) + ' de ' + total;
+  document.getElementById('progressFill').style.width = (((currentQ + 1) / total) * 100) + '%';
+  var html = '<div class="quiz-question">' + q.q + '</div><div class="quiz-options">';
+  q.opts.forEach(function(opt) {
+    html += '<div class="quiz-option" onclick="answerQuiz(' + opt.val + ')"><span class="opt-letter">' + opt.letter + '</span>' + opt.text + '</div>';
   });
-}, { threshold: 0.15 });
-reveals.forEach(el => observer.observe(el));
+  html += '</div>';
+  document.getElementById('quizContent').innerHTML = html;
+}
+function answerQuiz(val) {
+  score += val; currentQ++;
+  if (currentQ < questions.length) { renderQuestion(); window.scrollTo(0, 0); }
+  else {
+    if (score <= 4) userResult = 'resultLivro';
+    else if (score <= 8) userResult = 'resultCurso';
+    else userResult = 'resultMentoria';
+    document.getElementById('quizScreen').classList.remove('active');
+    document.getElementById('captureScreen').classList.add('active');
+    window.scrollTo(0, 0);
+  }
+}
+function showInlineMessage(elementId, message, isError) {
+  var el = document.getElementById(elementId);
+  if (!el) return;
+  el.innerHTML = '<div style="padding:0.8rem;margin-top:0.5rem;color:' + (isError ? '#e87070' : 'var(--accent-light)') + ';font-size:0.85rem;border-radius:4px;background:' + (isError ? 'rgba(232,112,112,0.08)' : 'rgba(58,124,196,0.08)') + ';">' + message + '</div>';
+}
+function submitCapture() {
+  var name = document.getElementById('captureName').value.trim();
+  var email = document.getElementById('captureEmail').value.trim();
+  var whatsapp = document.getElementById('captureWhatsapp').value.trim();
+  if (!name || !email || !whatsapp) {
+    var fb = document.querySelector('.capture-form');
+    var existing = document.getElementById('captureFeedback');
+    if (!existing) {
+      var div = document.createElement('div');
+      div.id = 'captureFeedback';
+      fb.appendChild(div);
+    }
+    showInlineMessage('captureFeedback', 'Preencha todos os campos para ver sua recomendação.', true);
+    return;
+  }
+  if (email.indexOf('@') === -1) {
+    showInlineMessage('captureFeedback', 'Digite um email válido.', true);
+    return;
+  }
+  console.log('Lead:', { name: name, email: email, whatsapp: whatsapp, result: userResult, score: score });
+  document.getElementById('captureScreen').classList.remove('active');
+  document.getElementById(userResult).classList.add('active');
+  document.getElementById('footerSection').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+function goHome() {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('homeScreen').style.display = '';
+  document.getElementById('footerSection').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+var cb = document.getElementById('addAudiobook');
+if (cb) cb.addEventListener('change', function() {
+  document.getElementById('totalPrice').textContent = 'Total: ' + (this.checked ? 'R$69,80' : 'R$29,90');
+});
+function handleBuy(e) {
+  e.preventDefault();
+  var withAudio = document.getElementById('addAudiobook').checked;
+  window.location.href = withAudio ? '#' : '#'; // Trocar pelos links reais da Hotmart/Kiwify
+}
+function handleWaitlist(product) {
+  var btnId = product === 'curso' ? 'cursoWaitlistBtn' : 'mentoriaWaitlistBtn';
+  var btn = document.getElementById(btnId);
+  console.log('Waitlist:', { product: product, result: userResult, score: score });
+  btn.textContent = '✓ Vaga garantida';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  btn.style.cursor = 'default';
+}
+function openCommunityModal() { document.getElementById('communityModal').classList.add('active'); }
+function closeCommunityModal() {
+  document.getElementById('communityModal').classList.remove('active');
+  document.getElementById('communityFeedback').innerHTML = '';
+}
+function submitCommunityWaitlist() {
+  var email = document.getElementById('communityEmail').value.trim();
+  if (!email || email.indexOf('@') === -1) {
+    showInlineMessage('communityFeedback', 'Digite um email válido.', true);
+    return;
+  }
+  console.log('Community waitlist:', email);
+  document.querySelector('#communityModal .modal-box').innerHTML = '<h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--text-bright);margin-bottom:0.8rem;">Pronto!</h3><p style="font-size:0.88rem;color:var(--text-dim);line-height:1.7;">Você está na fila de espera. Te aviso quando as vagas abrirem.</p><button class="modal-close" onclick="closeCommunityModal()" style="margin-top:1.5rem;background:none;border:none;color:var(--text-dim);font-size:0.75rem;cursor:pointer;font-family:var(--sans);">Fechar</button>';
+}
+function openPartnershipModal() { document.getElementById('partnershipModal').classList.add('active'); }
+function closePartnershipModal() {
+  document.getElementById('partnershipModal').classList.remove('active');
+  document.getElementById('partnerFeedback').innerHTML = '';
+}
+function submitPartnership() {
+  var name = document.getElementById('partnerName').value.trim();
+  var email = document.getElementById('partnerEmail').value.trim();
+  var message = document.getElementById('partnerMessage').value.trim();
+  if (!name || !email || !message) {
+    showInlineMessage('partnerFeedback', 'Preencha todos os campos.', true);
+    return;
+  }
+  if (email.indexOf('@') === -1) {
+    showInlineMessage('partnerFeedback', 'Digite um email válido.', true);
+    return;
+  }
+  console.log('Partnership:', { name: name, email: email, message: message });
+  document.querySelector('#partnershipModal .modal-box').innerHTML = '<h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--text-bright);margin-bottom:0.8rem;">Proposta enviada!</h3><p style="font-size:0.88rem;color:var(--text-dim);line-height:1.7;">Entrarei em contato em breve. Obrigado pelo interesse.</p><button class="modal-close" onclick="closePartnershipModal()" style="margin-top:1.5rem;background:none;border:none;color:var(--text-dim);font-size:0.75rem;cursor:pointer;font-family:var(--sans);">Fechar</button>';
+}
 </script>
 </body>
 </html>
