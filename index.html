@@ -85,256 +85,39 @@ nav{position:fixed;top:0;width:100%;z-index:100;padding:1.2rem 2rem;display:flex
 .result-individual a:hover{color:var(--text-bright);}
 .upsell-card{margin-top:2.5rem;padding:1.5rem 2rem;background:var(--bg-2);border:1px solid rgba(58,124,196,0.15);border-radius:8px;text-align:left;position:relative;overflow:hidden;}
 .upsell-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
-.upsell-badge{display:inline-block;font-size:0.58rem;letter-spacing:0.3em;color:var(--accent);text-transform:uppercase;}
-.upsell-desc{font-size:0.88rem;color:var(--text);line-height:1.6;margin-bottom:1.2rem;}
-.upsell-list{list-style:none;margin-bottom:1.5rem;text-align:left;}
-.upsell-list li{padding:0.4rem 0;color:var(--text);font-size:0.85rem;display:flex;align-items:baseline;gap:0.6rem;}
-.upsell-list li::before{content:'✓';color:var(--accent-light);font-weight:bold;flex-shrink:0;}
-.upsell-price{font-family:var(--serif);font-size:1.4rem;color:var(--accent-light);margin-bottom:0.5rem;font-weight:300;}
-.upsell-price-sub{font-size:0.7rem;color:var(--text-dim);}
-.upsell-cta{display:inline-flex;padding:0.8rem 2rem;background:var(--accent);color:#fff;text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all 0.3s;}
-.upsell-cta:hover{background:var(--accent-light);}
-@media (max-width:768px){
-.header{padding:1rem 1.5rem;}
-.logo{font-size:1.2rem;}
-.nav{gap:0.5rem;}
-.nav-link{font-size:0.75rem;}
-.hero{padding:2rem 1.5rem;}
-.hero-title{font-size:clamp(1.5rem,6vw,2.2rem);}
-.hero-subtitle{font-size:0.9rem;}
-.hero-cta{padding:0.8rem 2rem;font-size:0.7rem;}
-.hero-social{gap:0.8rem;}
-.hero-social a{width:32px;height:32px;}
-.feature-grid{grid-template-columns:1fr;gap:1.5rem;}
-.feature-card{padding:1.5rem;}
-.feature-title{font-size:1rem;}
-.feature-desc{font-size:0.8rem;}
-.split-section{flex-direction:column;gap:2rem;}
-.split-image{width:100%;}
-.cta-section{padding:1.5rem;}
-.gallery{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;}
-.gallery-item{height:120px;}
-.testimonials{gap:1.5rem;}
-.testimonial-card{padding:1.2rem;}
-.testimonial-text{font-size:0.85rem;}
-.testimonial-author{font-size:0.75rem;}
-.form-container{padding:1.5rem;}
-.form-group{margin-bottom:1rem;}
-.form-label{font-size:0.8rem;}
-.form-input,.form-textarea{font-size:0.9rem;padding:0.6rem;}
-.form-submit{padding:0.7rem 1.5rem;font-size:0.7rem;}
-.tool-card{padding:1.2rem;}
-.tool-icon{width:40px;height:40px;}
-.tool-title{font-size:0.9rem;}
-.tool-desc{font-size:0.75rem;}
-.capture-section{padding:1.5rem;}
-.capture-title{font-size:1.2rem;}
-.capture-desc{font-size:0.85rem;}
-.capture-input-group{flex-direction:column;}
-.capture-input{width:100%;}
-.capture-btn{padding:0.7rem 1.5rem;font-size:0.65rem;}
-.result-wrap{max-width:100%;padding:1rem;}
-.result-product-name{font-size:clamp(1.2rem,3vw,1.8rem);}
-.result-desc{font-size:0.8rem;}
-.result-cta{padding:0.7rem 1.5rem;font-size:0.65rem;}
-.upsell-card{padding:1rem 1.5rem;margin-top:1.5rem;}
-}
-@media (max-width:480px){
-.header{padding:0.8rem 1rem;}
-.logo{font-size:1rem;}
-.nav{gap:0.3rem;}
-.nav-link{font-size:0.7rem;padding:0.4rem 0.6rem;}
-.hero{padding:1.5rem 1rem;}
-.hero-title{font-size:clamp(1.2rem,5vw,1.8rem);}
-.hero-subtitle{font-size:0.8rem;margin-bottom:1rem;}
-.hero-cta{padding:0.6rem 1.5rem;font-size:0.65rem;}
-.hero-social{gap:0.6rem;}
-.hero-social a{width:28px;height:28px;}
-.feature-grid{gap:1rem;}
-.feature-card{padding:1rem;}
-.feature-title{font-size:0.9rem;}
-.feature-desc{font-size:0.75rem;}
-.split-section{gap:1.5rem;}
-.section-title{font-size:1.2rem;}
-.cta-section{padding:1rem;}
-.cta-title{font-size:1rem;}
-.cta-desc{font-size:0.8rem;}
-.cta-button{padding:0.6rem 1.5rem;font-size:0.65rem;}
-.gallery{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.8rem;}
-.gallery-item{height:100px;}
-.testimonials{gap:1rem;}
-.testimonial-card{padding:1rem;}
-.testimonial-text{font-size:0.8rem;}
-.testimonial-author{font-size:0.7rem;}
-.form-container{padding:1rem;}
-.form-group{margin-bottom:0.8rem;}
-.form-label{font-size:0.75rem;}
-.form-input,.form-textarea{font-size:0.85rem;padding:0.5rem;}
-.form-submit{padding:0.6rem 1.2rem;font-size:0.6rem;}
-.tool-card{padding:1rem;}
-.tool-icon{width:36px;height:36px;}
-.tool-title{font-size:0.85rem;}
-.tool-desc{font-size:0.7rem;}
-.capture-section{padding:1rem;}
-.capture-title{font-size:1rem;}
-.capture-desc{font-size:0.8rem;}
-.capture-input{font-size:0.8rem;padding:0.5rem;}
-.capture-btn{padding:0.6rem 1.2rem;font-size:0.6rem;}
-.result-wrap{padding:0.8rem;}
-.result-product-name{font-size:clamp(1rem,2.5vw,1.5rem);}
-.result-desc{font-size:0.75rem;}
-.result-cta{padding:0.6rem 1.2rem;font-size:0.6rem;}
-}
-</style>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XXXXXXXXXX');
-</script>
-</head>
-<body>
-<div class="container">
-<header class="header">
-<div class="logo">YourLogo</div>
-<nav class="nav">
-<a href="#features" class="nav-link">Features</a>
-<a href="#about" class="nav-link">About</a>
-<a href="#contact" class="nav-link">Contact</a>
-</nav>
-</header>
-<section class="hero">
-<h1 class="hero-title">Build Better. Faster. Together.</h1>
-<p class="hero-subtitle">The ultimate solution for modern teams</p>
-<button class="hero-cta">Get Started</button>
-<div class="hero-social">
-<a href="#" aria-label="Twitter"></a>
-<a href="#" aria-label="LinkedIn"></a>
-<a href="#" aria-label="GitHub"></a>
-</div>
-</section>
-<section class="features" id="features">
-<h2 class="section-title">Why Choose Us?</h2>
-<div class="feature-grid">
-<div class="feature-card">
-<div class="feature-icon"></div>
-<h3 class="feature-title">Fast</h3>
-<p class="feature-desc">Lightning quick performance that scales with your needs</p>
-</div>
-<div class="feature-card">
-<div class="feature-icon"></div>
-<h3 class="feature-title">Secure</h3>
-<p class="feature-desc">Enterprise-grade security built from the ground up</p>
-</div>
-<div class="feature-card">
-<div class="feature-icon"></div>
-<h3 class="feature-title">Simple</h3>
-<p class="feature-desc">Intuitive design that anyone can use in minutes</p>
-</div>
-</div>
-</section>
-<section class="split-section">
-<div class="split-image"></div>
-<div class="split-content">
-<h2>Powerful Features</h2>
-<p>Everything you need in one place</p>
-</div>
-</section>
-<section class="cta-section">
-<h2 class="cta-title">Ready to Get Started?</h2>
-<p class="cta-desc">Join thousands of satisfied users</p>
-<button class="cta-button">Start Free Trial</button>
-</section>
-<section class="gallery">
-<div class="gallery-item"></div>
-<div class="gallery-item"></div>
-<div class="gallery-item"></div>
-<div class="gallery-item"></div>
-</section>
-<section class="testimonials">
-<h2 class="section-title">What Our Users Say</h2>
-<div class="testimonial-card">
-<p class="testimonial-text">"This has been a game-changer for our team."</p>
-<div class="testimonial-author">- John Doe</div>
-</div>
-<div class="testimonial-card">
-<p class="testimonial-text">"Best investment we've made this year."</p>
-<div class="testimonial-author">- Jane Smith</div>
-</div>
-</section>
-<section class="form-container">
-<h2 class="section-title">Get in Touch</h2>
-<form>
-<div class="form-group">
-<label class="form-label">Name</label>
-<input class="form-input" type="text" placeholder="Your name">
-</div>
-<div class="form-group">
-<label class="form-label">Email</label>
-<input class="form-input" type="email" placeholder="Your email">
-</div>
-<div class="form-group">
-<label class="form-label">Message</label>
-<textarea class="form-textarea" placeholder="Your message"></textarea>
-</div>
-<button class="form-submit" type="submit">Send</button>
-</form>
-</section>
-<section class="tool-cards">
-<h2 class="section-title">Our Tools</h2>
-<div class="tool-card">
-<div class="tool-icon"></div>
-<h3 class="tool-title">Analytics</h3>
-<p class="tool-desc">Track everything that matters</p>
-</div>
-<div class="tool-card">
-<div class="tool-icon"></div>
-<h3 class="tool-title">Automation</h3>
-<p class="tool-desc">Automate repetitive tasks</p>
-</div>
-</section>
-<section class="capture-section">
-<h2 class="capture-title">Find Your Perfect Solution</h2>
-<p class="capture-desc">Answer a few questions to discover what works best for you</p>
-<div class="capture-input-group">
-<input class="capture-input" type="text" placeholder="What are you looking for?">
-<button class="capture-btn">Discover</button>
-</div>
-</section>
-<div class="result-wrap" style="display:none;">
-<div class="result-label">Your Perfect Match</div>
-<h2 class="result-product-name">Premium Suite</h2>
-<p class="result-tagline">Designed for teams like yours</p>
-<p class="result-desc">Everything you need to scale your business and delight your customers. From analytics to automation, we've got you covered.</p>
-<ul class="result-items">
-<li>Advanced Analytics</li>
-<li>Real-time Collaboration</li>
-<li>24/7 Support</li>
-</ul>
-<div class="result-price">$299/mo</div>
-<p class="result-price-note">Billed annually. Cancel anytime.</p>
-<button class="result-cta">Get Started</button>
-<a class="result-cta-waitlist" href="#">Join Waitlist</a>
-<div class="result-individual">
-<p>Looking for individual use?</p>
-<a href="#">Check out our Indie Plan</a>
-</div>
-<div class="upsell-card">
-<div class="upsell-badge">POPULAR</div>
-<h3>Add-ons</h3>
-<p class="upsell-desc">Enhance your experience</p>
-<ul class="upsell-list">
-<li>Priority Support</li>
-<li>Custom Integrations</li>
-<li>Advanced Security</li>
-</ul>
-<div class="upsell-price">$99<span class="upsell-price-sub">/mo extra</span></div>
-<button class="upsell-cta">Add to Plan</button>
-</div>
-</div>
-</div>
-</body>
-</html>ex-wrap:wrap;gap:1rem;}
+.upsell-badge{display:inline-block;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;background:rgba(58,124,196,0.15);color:var(--accent-light);padding:3px 8px;border-radius:2px;margin-bottom:0.8rem;}
+.upsell-title{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:var(--text-bright);margin-bottom:0.4rem;}
+.upsell-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.7;margin-bottom:1rem;}
+.upsell-price-row{display:flex;align-items:baseline;gap:0.8rem;margin-bottom:1rem;}
+.upsell-price{font-family:var(--serif);font-size:1.3rem;color:var(--accent-light);}
+.upsell-price-note{font-size:0.75rem;color:var(--text-dim);}
+.upsell-check{display:flex;align-items:center;gap:10px;cursor:pointer;padding:0.6rem 0;}
+.upsell-check input[type="checkbox"]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer;}
+.upsell-check label{font-size:0.85rem;color:var(--text);cursor:pointer;}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(6,8,16,0.95);backdrop-filter:blur(30px);z-index:200;justify-content:center;align-items:center;padding:2rem;}
+.modal-overlay.active{display:flex;}
+.modal-box{max-width:420px;width:100%;text-align:center;}
+.modal-box h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--text-bright);margin-bottom:0.8rem;}
+.modal-box p{font-size:0.88rem;color:var(--text-dim);margin-bottom:1.5rem;line-height:1.7;}
+.modal-box input,.modal-box textarea{width:100%;padding:0.85rem 1rem;background:var(--bg-2);border:1px solid rgba(58,124,196,0.12);border-radius:4px;color:var(--text);font-family:var(--sans);font-size:0.85rem;outline:none;margin-bottom:10px;}
+.modal-box input:focus,.modal-box textarea:focus{border-color:var(--accent);}
+.modal-box input::placeholder,.modal-box textarea::placeholder{color:var(--text-dim);}
+.modal-box textarea{min-height:100px;resize:vertical;}
+.modal-btn{width:100%;padding:0.85rem;background:var(--accent);border:none;border-radius:4px;color:#fff;font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+.modal-btn:hover{background:var(--accent-light);}
+.modal-close{margin-top:1rem;background:none;border:none;color:var(--text-dim);font-size:0.75rem;cursor:pointer;font-family:var(--sans);}
+footer{padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(58,124,196,0.06);}
+.footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.2rem;}
+.footer-links a{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.3s;cursor:pointer;}
+.footer-links a:hover{color:var(--accent-light);}
+.footer-copy{font-size:0.68rem;color:rgba(200,210,230,0.12);letter-spacing:0.1em;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:640px){
+  nav{padding:1rem;}
+  .nav-links{gap:1rem;}
+  .nav-links a{font-size:0.63rem;}
+  .screen{padding:5rem 1.5rem 3rem;}
+  .footer-links{flex-wrap:wrap;gap:1rem;}
   .upsell-price-row{flex-direction:column;gap:0.2rem;}
 }
 </style>
@@ -436,7 +219,7 @@ gtag('config', 'G-XXXXXXXXXX');
   </ul>
   <div style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;font-style:italic;">As inscrições abrem em breve.</div>
   <div class="result-price-note" style="margin-bottom:2rem;">Você será o primeiro a saber — já tenho seu contato.</div>
-  <button class="result-cta-waitlist" id="cursoWaitlistBtn" onclick="handleWaitlist('curso')">Garantir minha vaga na lista</button>
+  <button class="result-cta-waitlist" onclick="alert('Pronto! Você está na lista. Te aviso assim que abrir.')">Garantir minha vaga na lista</button>
 </div>
 </section>
 <section class="screen" id="resultMentoria">
@@ -455,10 +238,10 @@ gtag('config', 'G-XXXXXXXXXX');
   </ul>
   <div style="font-size:0.85rem;color:var(--text-dim);margin-bottom:0.3rem;font-style:italic;">Turmas limitadas. Inscrições abrem em breve.</div>
   <div class="result-price-note" style="margin-bottom:2rem;">Você será o primeiro a saber — já tenho seu contato.</div>
-  <button class="result-cta-waitlist" id="mentoriaWaitlistBtn" onclick="handleWaitlist('mentoria')">Garantir minha vaga na lista</button>
+  <button class="result-cta-waitlist" onclick="alert('Pronto! Você está na lista prioritária. Te aviso pessoalmente quando a turma abrir.')">Garantir minha vaga na lista</button>
   <div class="result-individual">
     <p>Prefere acompanhamento individual e exclusivo?</p>
-    <a href="https://wa.me/SEUNUMERO?text=Olá%2C%20tenho%20interesse%20na%20mentoria%20individual%20com%20o%20Guilherme." target="_blank">Falar diretamente comigo no WhatsApp →</a>
+    <a href="https://wa.me/SEUNUMERO?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20mentoria%20individual%20com%20o%20Guilherme." target="_blank">Falar diretamente comigo no WhatsApp →</a>
   </div>
 </div>
 </section>
@@ -467,7 +250,6 @@ gtag('config', 'G-XXXXXXXXXX');
   <h3>A Comunidade Oconker</h3>
   <p>As inscrições estão fechadas no momento. Deixe seu email para entrar na fila de espera e ser avisado quando as vagas forem abertas.</p>
   <input type="email" id="communityEmail" placeholder="Seu melhor email">
-  <div id="communityFeedback"></div>
   <button class="modal-btn" onclick="submitCommunityWaitlist()">Entrar na fila de espera</button>
   <button class="modal-close" onclick="closeCommunityModal()">Voltar</button>
 </div>
@@ -479,7 +261,6 @@ gtag('config', 'G-XXXXXXXXXX');
   <input type="text" id="partnerName" placeholder="Seu nome ou empresa">
   <input type="email" id="partnerEmail" placeholder="Email de contato">
   <textarea id="partnerMessage" placeholder="Descreva sua proposta..."></textarea>
-  <div id="partnerFeedback"></div>
   <button class="modal-btn" onclick="submitPartnership()">Enviar proposta</button>
   <button class="modal-close" onclick="closePartnershipModal()">Voltar</button>
 </div>
@@ -559,57 +340,13 @@ function answerQuiz(val) {
     window.scrollTo(0, 0);
   }
 }
-function showInlineMessage(elementId, message, isError) {
-  var el = document.getElementById(elementId);
-  if (!el) return;
-  el.innerHTML = '<div style="padding:0.8rem;margin-top:0.5rem;color:' + (isError ? '#e87070' : 'var(--accent-light)') + ';font-size:0.85rem;border-radius:4px;background:' + (isError ? 'rgba(232,112,112,0.08)' : 'rgba(58,124,196,0.08)') + ';">' + message + '</div>';
-}
 function submitCapture() {
-  var name = document.getElementById('captureName').value.trim();
-  var email = document.getElementById('captureEmail').value.trim();
-  var whatsapp = document.getElementById('captureWhatsapp').value.trim();
-  if (!name || !email || !whatsapp) {
-    var fb = document.querySelector('.capture-form');
-    var existing = document.getElementById('captureFeedback');
-    if (!existing) {
-      var div = document.createElement('div');
-      div.id = 'captureFeedback';
-      fb.appendChild(div);
-    }
-    showInlineMessage('captureFeedback', 'Preencha todos os campos para ver sua recomendação.', true);
-    return;
-  }
-  if (email.indexOf('@') === -1) {
-    showInlineMessage('captureFeedback', 'Digite um email válido.', true);
-    return;
-  }
-  // Salvar lead no Notion
-  var prodMap = { resultLivro: 'Livro', resultCurso: 'Curso', resultMentoria: 'Mentoria' };
-  var produto = prodMap[userResult] || 'Livro';
-  fetch('https://api.notion.com/v1/pages', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer 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',
-      'Content-Type': 'application/json',
-      'Notion-Version': '2022-06-28'
-    },
-    body: JSON.stringify({
-      parent: { database_id: 'b9477be2190f4e94887f03e451218e7e' },
-      properties: {
-        'Nome': { title: [{ text: { content: name } }] },
-        'Email': { email: email },
-        'WhatsApp': { phone_number: whatsapp },
-        'Produto Recomendado': { select: { name: produto } },
-        'Score do Quiz': { number: score },
-        'Status': { select: { name: 'Novo' } }
-      }
-    })
-  }).then(function(r) {
-    console.log('Lead salvo no Notion, status:', r.status);
-  }).catch(function(e) {
-    console.warn('Notion API error (lead não salvo):', e);
-  });
-  // Navegar para o resultado sem esperar pela API
+  var name = document.getElementById('captureName').value;
+  var email = document.getElementById('captureEmail').value;
+  var whatsapp = document.getElementById('captureWhatsapp').value;
+  if (!name || !email || !whatsapp) { alert('Preencha todos os campos para ver sua recomendação.'); return; }
+  if (email.indexOf('@') === -1) { alert('Digite um email válido.'); return; }
+  console.log('Lead:', { name: name, email: email, whatsapp: whatsapp, result: userResult, score: score });
   document.getElementById('captureScreen').classList.remove('active');
   document.getElementById(userResult).classList.add('active');
   document.getElementById('footerSection').style.display = 'block';
@@ -628,92 +365,32 @@ if (cb) cb.addEventListener('change', function() {
 function handleBuy(e) {
   e.preventDefault();
   var withAudio = document.getElementById('addAudiobook').checked;
-  window.location.href = withAudio ? '#' : '#'; // Trocar pelos links reais da Hotmart/Kiwify
-}
-function handleWaitlist(product) {
-  var btnId = product === 'curso' ? 'cursoWaitlistBtn' : 'mentoriaWaitlistBtn';
-  var btn = document.getElementById(btnId);
-  console.log('Waitlist:', { product: product, result: userResult, score: score });
-  btn.textContent = '✓ Vaga garantida';
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-  btn.style.cursor = 'default';
+  window.location.href = withAudio ? '#' : '#'; // Trocar pelos links reais
 }
 function openCommunityModal() { document.getElementById('communityModal').classList.add('active'); }
-function closeCommunityModal() {
-  document.getElementById('communityModal').classList.remove('active');
-  document.getElementById('communityFeedback').innerHTML = '';
-}
+function closeCommunityModal() { document.getElementById('communityModal').classList.remove('active'); }
 function submitCommunityWaitlist() {
-  var email = document.getElementById('communityEmail').value.trim();
-  if (!email || email.indexOf('@') === -1) {
-    showInlineMessage('communityFeedback', 'Digite um email válido.', true);
-    return;
-  }
-  // Salvar na lista de espera no Notion
-  fetch('https://api.notion.com/v1/pages', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer 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',
-      'Content-Type': 'application/json',
-      'Notion-Version': '2022-06-28'
-    },
-    body: JSON.stringify({
-      parent: { database_id: 'da43b7a07e334290afd4c217a41964fe' },
-      properties: {
-        'Name': { title: [{ text: { content: email } }] },
-        'Email': { email: email },
-        'Status': { select: { name: 'Aguardando' } }
-      }
-    })
-  }).then(function(r) {
-    console.log('Lista de espera salva no Notion, status:', r.status);
-  }).catch(function(e) {
-    console.warn('Notion API error (lista de espera):', e);
-  });
-  document.querySelector('#communityModal .modal-box').innerHTML = '<h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--text-bright);margin-bottom:0.8rem;">Pronto!</h3><p style="font-size:0.88rem;color:var(--text-dim);line-height:1.7;">Você está na fila de espera. Te aviso quando as vagas abrirem.</p><button class="modal-close" onclick="closeCommunityModal()" style="margin-top:1.5rem;background:none;border:none;color:var(--text-dim);font-size:0.75rem;cursor:pointer;font-family:var(--sans);">Fechar</button>';
+  var email = document.getElementById('communityEmail').value;
+  if (email && email.indexOf('@') !== -1) {
+    console.log('Community waitlist:', email);
+    alert('Pronto! Você está na fila de espera. Te aviso quando as vagas abrirem.');
+    closeCommunityModal();
+  } else alert('Digite um email válido.');
 }
 function openPartnershipModal() { document.getElementById('partnershipModal').classList.add('active'); }
-function closePartnershipModal() {
-  document.getElementById('partnershipModal').classList.remove('active');
-  document.getElementById('partnerFeedback').innerHTML = '';
-}
+function closePartnershipModal() { document.getElementById('partnershipModal').classList.remove('active'); }
 function submitPartnership() {
-  var name = document.getElementById('partnerName').value.trim();
-  var email = document.getElementById('partnerEmail').value.trim();
-  var message = document.getElementById('partnerMessage').value.trim();
-  if (!name || !email || !message) {
-    showInlineMessage('partnerFeedback', 'Preencha todos os campos.', true);
-    return;
-  }
-  if (email.indexOf('@') === -1) {
-    showInlineMessage('partnerFeedback', 'Digite um email válido.', true);
-    return;
-  }
-  // Salvar parceria no Notion
-  fetch('https://api.notion.com/v1/pages', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer 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',
-      'Content-Type': 'application/json',
-      'Notion-Version': '2022-06-28'
-    },
-    body: JSON.stringify({
-      parent: { database_id: 'fa3c301c5f744184aa479421260fa013' },
-      properties: {
-        'Nome': { title: [{ text: { content: name } }] },
-        'Email': { email: email },
-        'Mensagem': { rich_text: [{ text: { content: message } }] },
-        'Status': { select: { name: 'Nova' } }
-      }
-    })
-  }).then(function(r) {
-    console.log('Parceria salva no Notion, status:', r.status);
-  }).catch(function(e) {
-    console.warn('Notion API error (parceria):', e);
-  });
-  document.querySelector('#partnershipModal .modal-box').innerHTML = '<h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--text-bright);margin-bottom:0.8rem;">Proposta enviada!</h3><p style="font-size:0.88rem;color:var(--text-dim);line-height:1.7;">Entrarei em contato em breve. Obrigado pelo interesse.</p><button class="modal-close" onclick="closePartnershipModal()" style="margin-top:1.5rem;background:none;border:none;color:var(--text-dim);font-size:0.75rem;cursor:pointer;font-family:var(--sans);">Fechar</button>';
+  var name = document.getElementById('partnerName').value;
+  var email = document.getElementById('partnerEmail').value;
+  var message = document.getElementById('partnerMessage').value;
+  if (!name || !email || !message) { alert('Preencha todos os campos.'); return; }
+  console.log('Partnership:', { name: name, email: email, message: message });
+  alert('Proposta enviada! Entrarei em contato em breve. Obrigado.');
+  document.getElementById('partnerName').value = '';
+  document.getElementById('partnerEmail').value = '';
+  document.getElementById('partnerMessage').value = '';
+  closePartnershipModal();
 }
 </script>
 </body>
-  </html>
+</html>
