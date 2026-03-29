@@ -134,7 +134,7 @@ footer{padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(58,124,19
 <section class="hero" id="homeScreen">
   <div class="hero-label">Consciência · Identidade · Transmutação</div>
   <h1>Descubra o caminho certo para a sua <em>transformação</em></h1>
-  <p class="hero-sub">Responda algumas perguntas e eu te mostro exatamente por onde começar — de acordo com quem você é e o momento que está vivendo agora.</p>
+  <p class="hero-sub">Responda algumas perguntas e eu te mostro exatamente por onde começar — de acordo com quem vocé é e o momento que está vivendo agora.</p>
   <button class="hero-cta-main" onclick="startQuiz()">Descobrir meu caminho</button>
   <div class="hero-youtube">
     <a href="https://www.youtube.com/@oconker-0" target="_blank">
@@ -209,10 +209,10 @@ footer{padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(58,124,19
   <div class="result-product-name">A Alquimia da Energia — Imersão</div>
   <div class="result-tagline">O processo guiado de transmutação</div>
   <div class="result-vsl">VSL do curso em breve</div>
-  <div class="result-desc">Pelo que você me contou, você precisa de mais do que leitura — precisa de um processo estruturado, com vídeo-aulas, exercícios guiados e aprofundamento real. Este curso transforma o mapa do livro em jornada prática.</div>
+  <div class="result-desc">Pelo que você me contou, você precisa de mais do que leitura — precisa de um processo estruturado, com video-aulas, exercícios guiados e aprofundamento real. Este curso transforma o mapa do livro em jornada prática.</div>
   <ul class="result-items">
-    <li>8 módulos em vídeo — aprofundamento que o livro não alcança</li>
-    <li>Práticas guiadas em vídeo para cada fase da transmutação</li>
+    <li>8 módulos em video — aprofundamento que o livro não alcança</li>
+    <li>Práticas guiadas em video para cada fase da transmutação</li>
     <li>Exercícios progressivos com acompanhamento da evolução</li>
     <li>Acesso à comunidade de alunos</li>
     <li>Atualizações incluídas</li>
@@ -323,74 +323,4 @@ function renderQuestion() {
   document.getElementById('progressFill').style.width = (((currentQ + 1) / total) * 100) + '%';
   var html = '<div class="quiz-question">' + q.q + '</div><div class="quiz-options">';
   q.opts.forEach(function(opt) {
-    html += '<div class="quiz-option" onclick="answerQuiz(' + opt.val + ')"><span class="opt-letter">' + opt.letter + '</span>' + opt.text + '</div>';
-  });
-  html += '</div>';
-  document.getElementById('quizContent').innerHTML = html;
-}
-function answerQuiz(val) {
-  score += val; currentQ++;
-  if (currentQ < questions.length) { renderQuestion(); window.scrollTo(0, 0); }
-  else {
-    if (score <= 4) userResult = 'resultLivro';
-    else if (score <= 8) userResult = 'resultCurso';
-    else userResult = 'resultMentoria';
-    document.getElementById('quizScreen').classList.remove('active');
-    document.getElementById('captureScreen').classList.add('active');
-    window.scrollTo(0, 0);
-  }
-}
-function submitCapture() {
-  var name = document.getElementById('captureName').value;
-  var email = document.getElementById('captureEmail').value;
-  var whatsapp = document.getElementById('captureWhatsapp').value;
-  if (!name || !email || !whatsapp) { alert('Preencha todos os campos para ver sua recomendação.'); return; }
-  if (email.indexOf('@') === -1) { alert('Digite um email válido.'); return; }
-  console.log('Lead:', { name: name, email: email, whatsapp: whatsapp, result: userResult, score: score });
-  document.getElementById('captureScreen').classList.remove('active');
-  document.getElementById(userResult).classList.add('active');
-  document.getElementById('footerSection').style.display = 'block';
-  window.scrollTo(0, 0);
-}
-function goHome() {
-  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById('homeScreen').style.display = '';
-  document.getElementById('footerSection').style.display = 'none';
-  window.scrollTo(0, 0);
-}
-var cb = document.getElementById('addAudiobook');
-if (cb) cb.addEventListener('change', function() {
-  document.getElementById('totalPrice').textContent = 'Total: ' + (this.checked ? 'R$69,80' : 'R$29,90');
-});
-function handleBuy(e) {
-  e.preventDefault();
-  var withAudio = document.getElementById('addAudiobook').checked;
-  window.location.href = withAudio ? '#' : '#'; // Trocar pelos links reais
-}
-function openCommunityModal() { document.getElementById('communityModal').classList.add('active'); }
-function closeCommunityModal() { document.getElementById('communityModal').classList.remove('active'); }
-function submitCommunityWaitlist() {
-  var email = document.getElementById('communityEmail').value;
-  if (email && email.indexOf('@') !== -1) {
-    console.log('Community waitlist:', email);
-    alert('Pronto! Você está na fila de espera. Te aviso quando as vagas abrirem.');
-    closeCommunityModal();
-  } else alert('Digite um email válido.');
-}
-function openPartnershipModal() { document.getElementById('partnershipModal').classList.add('active'); }
-function closePartnershipModal() { document.getElementById('partnershipModal').classList.remove('active'); }
-function submitPartnership() {
-  var name = document.getElementById('partnerName').value;
-  var email = document.getElementById('partnerEmail').value;
-  var message = document.getElementById('partnerMessage').value;
-  if (!name || !email || !message) { alert('Preencha todos os campos.'); return; }
-  console.log('Partnership:', { name: name, email: email, message: message });
-  alert('Proposta enviada! Entrarei em contato em breve. Obrigado.');
-  document.getElementById('partnerName').value = '';
-  document.getElementById('partnerEmail').value = '';
-  document.getElementById('partnerMessage').value = '';
-  closePartnershipModal();
-}
-</script>
-</body>
-</html>
+    html += '<div class="quiz-option" onclick="answerQuiz('�r��B�f��r�#��7�6�73�&�B��WGFW"#�r��B��WGFW"�s��7��r��B�FW�B�s��F�c�s��ғ���F����s��F�c�s��F�7V�V�B�vWDV�V�V�D'��B�wV��6��FV�Br����W$�D����F�ð�ЦgV�7F����7vW%V���f��66�&R��fò7W'&V�E�����b�7W'&V�E�VW7F���2��V�wF���&V�FW%VW7F��ₓ�v��F�r�67&���F����ТV�6R���b�66�&R��B�W6W%&W7V�B�w&W7V�DƗg&�s��V�6R�b�66�&R����W6W%&W7V�B�w&W7V�D7W'6�s��V�6RW6W%&W7V�B�w&W7V�D�V�F�&�s��F�7V�V�B�vWDV�V�V�D'��B�wV��67&VV�r��6�74Ɨ7B�&V��fR�v7F�fRr���F�7V�V�B�vWDV�V�V�D'��B�v6GW&U67&VV�r��6�74Ɨ7B�FB�v7F�fRr���v��F�r�67&���F�����ЧЦgV�7F���7V&֗D6GW&R����f"��R�F�7V�V�B�vWDV�V�V�D'��B�v6GW&T��Rr��f�VS��f"V����F�7V�V�B�vWDV�V�V�D'��B�v6GW&TV���r��f�VS��f"v�G6�F�7V�V�B�vWDV�V�V�D'��B�v6GW&Uv�G6r��f�VS���b���R��V�����v�G6���W'B�u&VV�6�F�F�2�26��2&fW"7V&V6��V�F:|:6��r��&WGW&�Т�b�V�����FW��b�tr��������W'B�tF�v�FRV�V���l:ƖF��r��&WGW&�Т6��6��R���r�t�VC�r����S���R�V��âV����v�G6�v�G6�&W7V�C�W6W%&W7V�B�66�&S�66�&Rғ��F�7V�V�B�vWDV�V�V�D'��B�v6GW&U67&VV�r��6�74Ɨ7B�&V��fR�v7F�fRr���F�7V�V�B�vWDV�V�V�D'��B�W6W%&W7V�B��6�74Ɨ7B�FB�v7F�fRr���F�7V�V�B�vWDV�V�V�D'��B�vf��FW%6V7F���r��7G��R�F�7���v&��6�s��v��F�r�67&���F�����ЦgV�7F���v���R����F�7V�V�B�VW'�6V�V7F�$�r�67&VV�r��f�$V6��gV�7F���2��2�6�74Ɨ7B�&V��fR�v7F�fRr��ғ��F�7V�V�B�vWDV�V�V�D'��B�v���U67&VV�r��7G��R�F�7���rs��F�7V�V�B�vWDV�V�V�D'��B�vf��FW%6V7F���r��7G��R�F�7���v���Rs��v��F�r�67&���F�����Чf"6"�F�7V�V�B�vWDV�V�V�D'��B�vFDVF��&���r����b�6"�6"�FDWfV�DƗ7FV�W"�v6��vRr�gV�7F��ₒ��F�7V�V�B�vWDV�V�V�D'��B�wF�F�&�6Rr��FW�D6��FV�B�uF�Fâr��F��2�6�V6�VB�u"Cc�Ãr�u"C#�Ór���ғ��gV�7F�����F�T'W��R���R�&WfV�DFVfV�B����f"v�F�VF���F�7V�V�B�vWDV�V�V�D'��B�vFDVF��&���r��6�V6�VC��v��F�r���6F����&Vb�v�F�VF���r2r�r2s���G&�6"V��2Ɩ�2&V�0�ЦgV�7F����V�6���V�G���F��F�7V�V�B�vWDV�V�V�D'��B�v6���V�G���F�r��6�74Ɨ7B�FB�v7F�fRr��ЦgV�7F���6��6T6���V�G���F��F�7V�V�B�vWDV�V�V�D'��B�v6���V�G���F�r��6�74Ɨ7B�&V��fR�v7F�fRr��ЦgV�7F���7V&֗D6���V�G�v�FƗ7B����f"V����F�7V�V�B�vWDV�V�V�D'��B�v6���V�G�V���r��f�VS���b�V�����V�����FW��b�tr���������W'B�tF�v�FRV�V���l:ƖF��r���&WGW&㰢Тf"'F��F�7V�V�B�VW'�6V�V7F�"�r66���V�G���F����F��'F�r���'F��F�6&�VB�G'VS��'F��FW�D6��FV�B�u6�f�F����s��fWF6��v�GG3�����F����v�FƗ7B�wV�ƆW&�W6��f�&��6���v�&�W'2�FWbr����WF��C�u�5Br���VFW'3��t6��FV�B�G�Rs�vƖ6F�����6��r���&�G���4���7G&��v�g���V��âV���Ґ�Ґ��F�V�gV�7F���&W2��&WGW&�&W2�6�ₓ�Ґ��F�V�gV�7F���FF����b�FF�7V66W72���'F��FW�D6��FV�B�tV�G&"�f��FRW7W&s��'F��F�6&�VB�f�6S��F�7V�V�B�vWDV�V�V�D'��B�v6���V�G�V���r��f�VR�rs���W'B�u&��F�f�<:�W7L:�f��FRW7W&�FRf�6�V�F�2fv2'&�&V��r���6��6T6���V�G���F����V�6R��'F��FW�D6��FV�B�tV�G&"�f��FRW7W&s��'F��F�6&�VB�f�6S���W'B�tW'&��6�f"�FV�FR��f�V�FR�r���ТҐ��6F6��gV�7F��ₒ��'F��FW�D6��FV�B�tV�G&"�f��FRW7W&s��'F��F�6&�VB�f�6S���W'B�tW'&�FR6��W�:6��FV�FR��f�V�FR�r���ғ��ЦgV�7F����V�'F�W'6����F��F�7V�V�B�vWDV�V�V�D'��B�w'F�W'6����F�r��6�74Ɨ7B�FB�v7F�fRr��ЦgV�7F���6��6U'F�W'6����F��F�7V�V�B�vWDV�V�V�D'��B�w'F�W'6����F�r��6�74Ɨ7B�&V��fR�v7F�fRr��ЦgV�7F���7V&֗E'F�W'6������f"��R�F�7V�V�B�vWDV�V�V�D'��B�w'F�W$��Rr��f�VS��f"V����F�7V�V�B�vWDV�V�V�D'��B�w'F�W$V���r��f�VS��f"�W76vR�F�7V�V�B�vWDV�V�V�D'��B�w'F�W$�W76vRr��f�VS���b���R��V������W76vR���W'B�u&VV�6�F�F�2�26��2�r��&WGW&�Т6��6��R���r�u'F�W'6���r����S���R�V��âV�����W76vS��W76vRғ���W'B�u&��7FV�f�FV�G&&V�V�6��FF�V�'&WfR��'&�vF��r���F�7V�V�B�vWDV�V�V�D'��B�w'F�W$��Rr��f�VR�rs��F�7V�V�B�vWDV�V�V�D'��B�w'F�W$V���r��f�VR�rs��F�7V�V�B�vWDV�V�V�D'��B�w'F�W$�W76vRr��f�VR�rs��6��6U'F�W'6����F���У��67&�C���&�G�����F���
